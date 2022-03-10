@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">DemoApplication</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+    <string name="dialog_test_content">반가워요. 테스트용 다이얼로그 입니다.</string>
+
+    <string name="dialog_common_btn_text_negative">아니오</string>
+    <string name="dialog_common_btn_text_positive">네</string>
+</resources>
