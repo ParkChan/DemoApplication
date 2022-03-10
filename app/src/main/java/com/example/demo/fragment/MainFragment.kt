@@ -32,10 +32,10 @@ class MainFragment : Fragment() {
             return
         }
         binding.btnTheme.setOnClickListener {
-            findNavController().navigate(R.id.action_MainFragment_to_FirstFragment)
+            findNavController().navigate(R.id.action_MainFragment_to_ThemeTestFragment)
         }
         binding.btnDialogPosition.setOnClickListener {
-            findNavController().navigate(R.id.action_MainFragment_to_SecondFragment)
+            findNavController().navigate(R.id.action_MainFragment_to_DialogPositionTestFragment)
         }
         binding.btnStartActivityTest.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_StartActivityTestFragment)

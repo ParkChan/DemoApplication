@@ -2,7 +2,7 @@ package com.example.demo.fragment
 
 import android.os.Bundle
 import android.view.View
-import com.example.demo.databinding.FragmentSecondBinding
+import com.example.demo.databinding.FragmentDialogPositionTestBinding
 import com.example.demo.dialog.CommonDialog
 import com.example.demo.dialog.RecyclerViewItemTouchEvent
 import com.example.demo.util.SecondRecyclerAdapter
@@ -10,7 +10,8 @@ import com.example.demo.util.SecondRecyclerAdapter
 /**
  * 리스트 아이템 위치에 다이얼로그를 노출하는 테스트
  */
-class SecondFragment : BaseFragment<FragmentSecondBinding>(FragmentSecondBinding::inflate),
+class DialogPositionTestFragment :
+    BaseFragment<FragmentDialogPositionTestBinding>(FragmentDialogPositionTestBinding::inflate),
     SecondRecyclerAdapter.OnItemSelectListener {
 
     private val secondRecyclerAdapter: SecondRecyclerAdapter by lazy {

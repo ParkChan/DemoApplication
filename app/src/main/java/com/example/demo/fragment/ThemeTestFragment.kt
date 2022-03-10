@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.demo.SubActivity
-import com.example.demo.databinding.FragmentFirstBinding
+import com.example.demo.databinding.FragmentThemeTestBinding
 import com.example.demo.util.ThemeType
 import com.example.demo.util.ThemeUtil
 import timber.log.Timber
@@ -17,15 +17,15 @@ import timber.log.Timber
 /**
  * 테마 설정을 변경 테스트
  */
-class FirstFragment : Fragment() {
+class ThemeTestFragment : Fragment() {
 
-    private lateinit var binding: FragmentFirstBinding
+    private lateinit var binding: FragmentThemeTestBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFirstBinding.inflate(inflater, container, false)
+        binding = FragmentThemeTestBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
 
@@ -57,9 +57,10 @@ class FirstFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Timber.d( "requestCode : $requestCode resultCode : $resultCode")
-        if(requestCode == SubActivity.ACTIVITY_RESULT_CODE){
-            Toast.makeText(requireContext(),"onActivityResult >> $resultCode", Toast.LENGTH_SHORT).show()
+        Timber.d("requestCode : $requestCode resultCode : $resultCode")
+        if (requestCode == SubActivity.ACTIVITY_RESULT_CODE) {
+            Toast.makeText(requireContext(), "onActivityResult >> $resultCode", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }
