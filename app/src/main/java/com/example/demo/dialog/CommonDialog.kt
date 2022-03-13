@@ -72,7 +72,9 @@ class CommonDialog : DialogFragment() {
 
         dialog?.window?.attributes =
             if (viewHolderItemInfo.itemPositionY() <
-                viewHolderItemInfo.recyclerViewYAxis() + viewHolderItemInfo.itemViewHeight()
+                viewHolderItemInfo.itemViewHeight()
+                    .plus(viewHolderItemInfo.recyclerViewYAxis())
+                    .minus(statusBarHeight())
             ) {
                 viewDynamicSettings()
                 params?.apply {
@@ -80,6 +82,7 @@ class CommonDialog : DialogFragment() {
                     width = ViewGroup.LayoutParams.MATCH_PARENT
                     height = dialogHeight
                     y = viewHolderItemInfo.itemPositionY()
+                        .plus(viewHolderItemInfo.recyclerViewYAxis() - statusBarHeight())
                 }
             } else {
                 params?.apply {
@@ -89,6 +92,7 @@ class CommonDialog : DialogFragment() {
                     y = viewHolderItemInfo.itemPositionY()
                         .minus(dialogHeight)
                         .plus(viewHolderItemInfo.itemViewHeight())
+                        .plus(viewHolderItemInfo.recyclerViewYAxis() - statusBarHeight())
                 }
             }
     }
