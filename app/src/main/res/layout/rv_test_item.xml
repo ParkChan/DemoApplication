@@ -22,7 +22,7 @@
         android:id="@+id/cl_root"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:onClick="@{() -> listener.select(sampleText,viewHolderItemInfo)}">
+        android:onClick="@{() -> listener.select(sampleText)}">
 
         <TextView
             android:id="@+id/tv_test"

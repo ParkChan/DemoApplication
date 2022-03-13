@@ -25,7 +25,9 @@ class CommonDialog : DialogFragment() {
     private val dialogMessage: String by lazy {
         arguments?.getString(BUNDLE_KEY_DIALOG_MESSAGE) ?: ""
     }
-
+    private val recyYAxis: Int by lazy {
+        arguments?.getInt(BUNDLE_KEY_RECYCLER_VIEW_Y_AXIS) ?: 0
+    }
     private val viewHolderItemInfo: ViewHolderItemInfo by lazy {
         arguments?.getParcelable(BUNDLE_KEY_VIEW_HOLDER_ITEM_INFO) ?: ViewHolderItemInfo()
     }
@@ -64,16 +66,14 @@ class CommonDialog : DialogFragment() {
     private fun initDialogWindow() {
         val params: WindowManager.LayoutParams? = dialog?.window?.attributes
         val dialogHeight = DIALOG_HEIGHT_DP.px
-
         Timber.d("viewHolderItemInfo >>> is $viewHolderItemInfo")
         Timber.d("Test >>> dialogHeight >>> is $dialogHeight")
-        Timber.d("Test >>> recyclerViewYAxis >>> is ${viewHolderItemInfo.recyclerViewYAxis().dp}")
+        Timber.d("Test >>> recyclerViewYAxis >>> is ${recyYAxis.dp}")
         Timber.d("Test >>> statusBarHeight >>> is ${statusBarHeight().dp}")
-
         dialog?.window?.attributes =
             if (viewHolderItemInfo.itemPositionY() <
                 viewHolderItemInfo.itemViewHeight()
-                    .plus(viewHolderItemInfo.recyclerViewYAxis())
+                    .plus(recyYAxis)
                     .minus(statusBarHeight())
             ) {
                 viewDynamicSettings()
@@ -82,7 +82,7 @@ class CommonDialog : DialogFragment() {
                     width = ViewGroup.LayoutParams.MATCH_PARENT
                     height = dialogHeight
                     y = viewHolderItemInfo.itemPositionY()
-                        .plus(viewHolderItemInfo.recyclerViewYAxis() - statusBarHeight())
+                        .plus(recyYAxis - statusBarHeight())
                 }
             } else {
                 params?.apply {
@@ -92,7 +92,7 @@ class CommonDialog : DialogFragment() {
                     y = viewHolderItemInfo.itemPositionY()
                         .minus(dialogHeight)
                         .plus(viewHolderItemInfo.itemViewHeight())
-                        .plus(viewHolderItemInfo.recyclerViewYAxis() - statusBarHeight())
+                        .plus(recyYAxis - statusBarHeight())
                 }
             }
     }
@@ -118,6 +118,7 @@ class CommonDialog : DialogFragment() {
     companion object {
         const val BUNDLE_KEY_DIALOG_MESSAGE = "dialog_message"
         const val BUNDLE_KEY_VIEW_HOLDER_ITEM_INFO = "view_holder_item_info"
+        const val BUNDLE_KEY_RECYCLER_VIEW_Y_AXIS = "recycler_view_y_axis"
         private const val DIALOG_HEIGHT_DP = 300
     }
 }

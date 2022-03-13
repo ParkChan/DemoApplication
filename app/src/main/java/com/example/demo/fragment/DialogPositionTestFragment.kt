@@ -11,9 +11,10 @@ import com.example.demo.databinding.FragmentDialogPositionTestBinding
 import com.example.demo.databinding.RvTestItemBinding
 import com.example.demo.dialog.CommonDialog
 import com.example.demo.dialog.CommonDialog.Companion.BUNDLE_KEY_DIALOG_MESSAGE
+import com.example.demo.dialog.CommonDialog.Companion.BUNDLE_KEY_RECYCLER_VIEW_Y_AXIS
 import com.example.demo.dialog.CommonDialog.Companion.BUNDLE_KEY_VIEW_HOLDER_ITEM_INFO
-import com.example.demo.dialog.ViewHolderItemInfo
 import com.example.demo.fragment.base.BaseFragment
+import com.example.demo.util.RecyclerViewItemTouchEvent
 
 /**
  * 리스트 아이템 위치에 다이얼로그를 노출하는 테스트
@@ -25,6 +26,7 @@ class DialogPositionTestFragment :
     private val secondRecyclerAdapter: SecondRecyclerAdapter by lazy {
         SecondRecyclerAdapter(this)
     }
+    private lateinit var recyclerViewItemTouchEvent: RecyclerViewItemTouchEvent
     private val mockItems = (1..100).map { it.toString().plus("테스트 다이얼로그 입니다.") }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -34,6 +36,7 @@ class DialogPositionTestFragment :
     }
 
     private fun initAdapter() {
+        recyclerViewItemTouchEvent = RecyclerViewItemTouchEvent(binding.rvSample)
         binding.rvSample.adapter = secondRecyclerAdapter
     }
 
@@ -41,18 +44,18 @@ class DialogPositionTestFragment :
         secondRecyclerAdapter.replaceItems(mockItems)
     }
 
-    override fun select(text: String, viewHolderItemInfo: ViewHolderItemInfo) {
-        showDialog(text, viewHolderItemInfo)
+    override fun select(text: String) {
+        showDialog(text)
     }
 
     private fun showDialog(
-        text: String,
-        viewHolderItemInfo: ViewHolderItemInfo,
+        text: String
     ) {
         val dialog = CommonDialog().apply {
             arguments = bundleOf(
                 BUNDLE_KEY_DIALOG_MESSAGE to text,
-                BUNDLE_KEY_VIEW_HOLDER_ITEM_INFO to viewHolderItemInfo
+                BUNDLE_KEY_RECYCLER_VIEW_Y_AXIS to recyclerViewYAxis(binding.rvSample),
+                BUNDLE_KEY_VIEW_HOLDER_ITEM_INFO to recyclerViewItemTouchEvent.itemViewPositionInfo
             )
         }
 
@@ -68,6 +71,12 @@ class DialogPositionTestFragment :
         }
         dialog.show(childFragmentManager, null)
     }
+
+    private fun recyclerViewYAxis(recycler: RecyclerView): Int {
+        val recyclerViewPos = IntArray(2) { 1 }
+        recycler.getLocationInWindow(recyclerViewPos)
+        return recyclerViewPos[1]
+    }
 }
 
 class SecondRecyclerAdapter(
@@ -77,7 +86,7 @@ class SecondRecyclerAdapter(
     private val itemList = mutableListOf<String>()
 
     interface OnItemSelectListener {
-        fun select(text: String, viewHolderItemInfo: ViewHolderItemInfo)
+        fun select(text: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleViewHolder {
@@ -109,21 +118,7 @@ class SecondRecyclerAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(text: String) {
             binding.sampleText = text
-            itemView.post {
-                binding.viewHolderItemInfo = ViewHolderItemInfo(
-                    recyclerViewYAxis(itemView.parent as RecyclerView),
-                    itemView.y,
-                    itemView.width,
-                    itemView.height
-                )
-            }
             binding.executePendingBindings()
-        }
-
-        private fun recyclerViewYAxis(recycler: RecyclerView): Int {
-            val recyclerViewPos = IntArray(2) { 1 }
-            recycler.getLocationInWindow(recyclerViewPos)
-            return recyclerViewPos[1]
         }
     }
 }
