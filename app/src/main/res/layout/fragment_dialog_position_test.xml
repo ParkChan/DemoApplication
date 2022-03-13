@@ -8,18 +8,6 @@
         android:layout_height="match_parent"
         tools:context=".fragment.DialogPositionTestFragment">
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="0dp"
-            android:layout_height="130dp"
-            android:gravity="center"
-            android:text="테스트 상단 UI"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/btn_rect"
-            />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_sample"
             android:layout_width="0dp"
@@ -29,7 +17,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/rv_test_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

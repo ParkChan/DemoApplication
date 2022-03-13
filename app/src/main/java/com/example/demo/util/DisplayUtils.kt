@@ -1,7 +1,20 @@
 package com.example.demo.util
 
-import android.content.Context
-import kotlin.math.roundToInt
+import android.content.res.Resources.getSystem
 
-fun convertDpToPx(context: Context, dp: Int): Int =
-    (dp * context.resources.displayMetrics.density).roundToInt()
+val Int.dp: Int get() = (this / getSystem().displayMetrics.density).toInt()
+val Int.px: Int get() = (this * getSystem().displayMetrics.density).toInt()
+
+fun statusBarHeight(): Int {
+    val resourceId = getSystem().getIdentifier(
+        "status_bar_height",
+        "dimen",
+        "android"
+    )
+    return if (resourceId > 0) {
+        getSystem().getDimensionPixelSize(resourceId)
+    } else {
+        0
+    }
+}
+
