@@ -1,10 +1,9 @@
-package com.example.demo.util
+package com.example.demo.dialog
 
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.demo.dialog.ViewHolderItemInfo
 
 /**
  * RecyclerView 에서 선택한 뷰홀더 아이템의 뷰정보(하단 y값, 뷰높이)를 가져오는 기능
@@ -20,7 +19,7 @@ class RecyclerViewItemTouchEvent(
         })
     }
 
-    val itemViewPositionInfo by lazy {
+    val viewHolderItemInfo by lazy {
         ViewHolderItemInfo()
     }
 
@@ -28,7 +27,8 @@ class RecyclerViewItemTouchEvent(
         override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {
             val child: View? = rv.findChildViewUnder(e.x, e.y)
             if (child != null && gestureDetector.onTouchEvent(e)) {
-                itemViewPositionInfo.onChangedTouchItemView(
+                viewHolderItemInfo.onChangedTouchItemView(
+                    rv.getChildAdapterPosition(child),
                     child.y,
                     child.height
                 )

@@ -2,7 +2,7 @@
 <resources>
 
 
-    <color name="test_bg">#000000</color>
+    <color name="test_bg">#80000000</color>
     <color name="test_divide_color">#FFFFFF</color>
     <color name="test_bg_stroke_black">#FFFFFF</color>
     <color name="test_text_color">#FFFFFF</color>

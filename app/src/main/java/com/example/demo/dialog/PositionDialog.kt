@@ -6,28 +6,24 @@ import android.os.Bundle
 import android.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
-import com.example.demo.databinding.DialogCommonBinding
-import com.example.demo.util.dp
-import com.example.demo.util.px
-import com.example.demo.util.statusBarHeight
+import com.example.demo.databinding.PositionDialogBinding
+import com.example.demo.util.DisplayUtils.dpToPx
 import timber.log.Timber
 
 /**
  * 선택한 뷰홀더의 위치에 따른 다이얼로그
  */
-class CommonDialog : DialogFragment() {
+class PositionDialog : DialogFragment() {
 
     private lateinit var positiveListener: View.OnClickListener
     private lateinit var negativeListener: View.OnClickListener
 
-    private lateinit var binding: DialogCommonBinding
+    private lateinit var binding: PositionDialogBinding
 
     private val dialogMessage: String by lazy {
         arguments?.getString(BUNDLE_KEY_DIALOG_MESSAGE) ?: ""
     }
-    private val recyYAxis: Int by lazy {
-        arguments?.getInt(BUNDLE_KEY_RECYCLER_VIEW_Y_AXIS) ?: 0
-    }
+
     private val viewHolderItemInfo: ViewHolderItemInfo by lazy {
         arguments?.getParcelable(BUNDLE_KEY_VIEW_HOLDER_ITEM_INFO) ?: ViewHolderItemInfo()
     }
@@ -37,7 +33,7 @@ class CommonDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DialogCommonBinding.inflate(inflater, container, false)
+        binding = PositionDialogBinding.inflate(inflater, container, false)
         isCancelable = true
         requireDialog().window?.apply {
 //            clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
@@ -65,36 +61,33 @@ class CommonDialog : DialogFragment() {
 
     private fun initDialogWindow() {
         val params: WindowManager.LayoutParams? = dialog?.window?.attributes
-        val dialogHeight = DIALOG_HEIGHT_DP.px
+        val dialogHeight = DIALOG_HEIGHT_DP.dpToPx.toInt()
+
         Timber.d("viewHolderItemInfo >>> is $viewHolderItemInfo")
         Timber.d("Test >>> dialogHeight >>> is $dialogHeight")
-        Timber.d("Test >>> recyclerViewYAxis >>> is ${recyYAxis.dp}")
-        Timber.d("Test >>> statusBarHeight >>> is ${statusBarHeight().dp}")
-        dialog?.window?.attributes =
-            if (viewHolderItemInfo.itemPositionY() <
-                viewHolderItemInfo.itemViewHeight()
-                    .plus(recyYAxis)
-                    .minus(statusBarHeight())
-            ) {
-                viewDynamicSettings()
-                params?.apply {
-                    gravity = Gravity.TOP
-                    width = ViewGroup.LayoutParams.MATCH_PARENT
-                    height = dialogHeight
-                    y = viewHolderItemInfo.itemPositionY()
-                        .plus(recyYAxis - statusBarHeight())
-                }
-            } else {
-                params?.apply {
-                    gravity = Gravity.TOP
-                    width = ViewGroup.LayoutParams.MATCH_PARENT
-                    height = dialogHeight
-                    y = viewHolderItemInfo.itemPositionY()
-                        .minus(dialogHeight)
-                        .plus(viewHolderItemInfo.itemViewHeight())
-                        .plus(recyYAxis - statusBarHeight())
-                }
+        Timber.d("Test >>> viewHolderItemInfo.itemPosition() >>> ${viewHolderItemInfo.itemPosition()}")
+        Timber.d("Test >>> viewHolderItemInfo.itemPositionY() >>> ${viewHolderItemInfo.itemPositionY()}")
+        Timber.d("Test >>> viewHolderItemInfo.itemViewHeight() >>> ${viewHolderItemInfo.itemViewHeight()}")
+
+        dialog?.window?.attributes = params?.apply {
+            gravity = Gravity.TOP
+            width = ViewGroup.LayoutParams.MATCH_PARENT
+            height = dialogHeight
+        }
+
+        if (viewHolderItemInfo.itemPositionY() < 0 ||
+            viewHolderItemInfo.itemPositionY() < dialogHeight
+        ) {
+            viewDynamicSettings()
+            params?.apply {
+                y = DIALOG_TEST_TOP_HEIGHT.dpToPx.toInt().plus(viewHolderItemInfo.itemPositionY())
             }
+        } else {
+            params?.apply {
+                y = DIALOG_TEST_TOP_HEIGHT.dpToPx.toInt().plus(viewHolderItemInfo.itemPositionY())
+                    .minus(dialogHeight.minus(viewHolderItemInfo.itemViewHeight()))
+            }
+        }
     }
 
     private fun viewDynamicSettings() {
@@ -102,14 +95,14 @@ class CommonDialog : DialogFragment() {
             binding.clButtonGroup.layoutParams as ConstraintLayout.LayoutParams
         buttonGroupLayoutParams.apply {
             topToTop = ConstraintLayout.LayoutParams.PARENT_ID
-            bottomToBottom = -1
+            bottomToBottom = DEFAULT_LAYOUT_ID
         }
         binding.clButtonGroup.layoutParams = buttonGroupLayoutParams
 
         val titleLayoutParams: ConstraintLayout.LayoutParams =
             binding.tvTitle.layoutParams as ConstraintLayout.LayoutParams
         titleLayoutParams.apply {
-            bottomToTop = -1
+            bottomToTop = DEFAULT_LAYOUT_ID
             topToBottom = binding.clButtonGroup.id
         }
         binding.tvTitle.layoutParams = titleLayoutParams
@@ -118,7 +111,9 @@ class CommonDialog : DialogFragment() {
     companion object {
         const val BUNDLE_KEY_DIALOG_MESSAGE = "dialog_message"
         const val BUNDLE_KEY_VIEW_HOLDER_ITEM_INFO = "view_holder_item_info"
-        const val BUNDLE_KEY_RECYCLER_VIEW_Y_AXIS = "recycler_view_y_axis"
-        private const val DIALOG_HEIGHT_DP = 300
+        const val BUNDLE_KEY_RECYCLER_VIEW_Y_AXIS = "bundle_key_recycler_view_y_axis"
+        private const val DEFAULT_LAYOUT_ID = -1
+        private const val DIALOG_TEST_TOP_HEIGHT = 120
+        private const val DIALOG_HEIGHT_DP = 250
     }
 }
