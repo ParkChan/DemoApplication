@@ -1,4 +1,4 @@
-package com.example.demo.fragment
+package com.example.demo.fragment.dialog
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,17 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.databinding.FragmentDialogPositionTestBinding
 import com.example.demo.databinding.RvTestItemBinding
-import com.example.demo.dialog.PositionDialog
-import com.example.demo.dialog.PositionDialog.Companion.BUNDLE_KEY_DIALOG_MESSAGE
-import com.example.demo.dialog.PositionDialog.Companion.BUNDLE_KEY_RECYCLER_VIEW_Y_AXIS
-import com.example.demo.dialog.PositionDialog.Companion.BUNDLE_KEY_VIEW_HOLDER_ITEM_INFO
-import com.example.demo.dialog.RecyclerViewItemTouchEvent
-import com.example.demo.dialog.ViewHolderItemInfo
+import com.example.demo.fragment.dialog.PositionDialog.Companion.BUNDLE_KEY_DIALOG_MESSAGE
+import com.example.demo.fragment.dialog.PositionDialog.Companion.BUNDLE_KEY_RECYCLER_VIEW_Y_AXIS
+import com.example.demo.fragment.dialog.PositionDialog.Companion.BUNDLE_KEY_VIEW_HOLDER_ITEM_INFO
 import com.example.demo.fragment.base.BaseFragment
 
 

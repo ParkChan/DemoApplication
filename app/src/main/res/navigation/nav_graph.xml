@@ -26,7 +26,7 @@
         tools:layout="@layout/fragment_theme_test" />
     <fragment
         android:id="@+id/DialogPositionTestFragment"
-        android:name="com.example.demo.fragment.DialogPositionTestFragment"
+        android:name="com.example.demo.fragment.dialog.DialogPositionTestFragment"
         tools:layout="@layout/fragment_dialog_position_test" />
 
     <fragment

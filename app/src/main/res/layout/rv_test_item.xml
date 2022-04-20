@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.example.demo.fragment.SecondRecyclerAdapter.OnItemSelectListener" />
+            type="com.example.demo.fragment.dialog.SecondRecyclerAdapter.OnItemSelectListener" />
 
     </data>
 

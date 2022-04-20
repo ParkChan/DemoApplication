@@ -1,4 +1,4 @@
-package com.example.demo.dialog
+package com.example.demo.fragment.dialog
 
 import android.view.GestureDetector
 import android.view.MotionEvent
