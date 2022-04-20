@@ -12,7 +12,7 @@ object ThemeUtil {
             ThemeType.DARK_MODE -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             }
-            ThemeType.DEFAULT_MODE -> {
+            ThemeType.SYSTEM_MODE -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                 } else {
@@ -21,4 +21,13 @@ object ThemeUtil {
             }
         }
     }
+
+    fun isNightMode(): Boolean =
+        AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
+}
+
+enum class ThemeType {
+    LIGHT_MODE,
+    DARK_MODE,
+    SYSTEM_MODE
 }

@@ -35,12 +35,13 @@ class ThemeTestFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Timber.d(">>> onViewCreated Dark theme ${isSystemDarkMode()}")
         binding.btnLight.setOnClickListener {
-            //mainViewModel.selectTheme(ThemeType.LIGHT_MODE)
             ThemeUtil.applyTheme(ThemeType.LIGHT_MODE)
         }
         binding.btnDark.setOnClickListener {
-            //mainViewModel.selectTheme(ThemeType.DARK_MODE)
             ThemeUtil.applyTheme(ThemeType.DARK_MODE)
+        }
+        binding.btnSystem.setOnClickListener {
+            ThemeUtil.applyTheme(ThemeType.SYSTEM_MODE)
         }
     }
 
@@ -55,12 +56,4 @@ class ThemeTestFragment : Fragment() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        Timber.d("requestCode : $requestCode resultCode : $resultCode")
-        if (requestCode == SubActivity.ACTIVITY_RESULT_CODE) {
-            Toast.makeText(requireContext(), "onActivityResult >> $resultCode", Toast.LENGTH_SHORT)
-                .show()
-        }
-    }
 }
