@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_MainFragment_to_StartActivityTestFragment"
             app:destination="@id/StartActivityTestFragment" />
+        <action
+            android:id="@+id/action_MainFragment_to_LiveDataTestFragment"
+            app:destination="@id/LiveDataTestFragment" />
     </fragment>
 
     <fragment
@@ -33,6 +36,11 @@
         android:id="@+id/StartActivityTestFragment"
         android:name="com.example.demo.fragment.StartActivityTestFragment"
         tools:layout="@layout/fragment_start_activity_test" />
+
+    <fragment
+        android:id="@+id/LiveDataTestFragment"
+        android:name="com.example.demo.fragment.LiveDataTestFragment"
+        tools:layout="@layout/fragment_livedata_test" />
 
 
 </navigation>

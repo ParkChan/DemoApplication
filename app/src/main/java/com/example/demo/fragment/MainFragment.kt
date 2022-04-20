@@ -40,5 +40,9 @@ class MainFragment : Fragment() {
         binding.btnStartActivityTest.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_StartActivityTestFragment)
         }
+        binding.btnLiveDataTest.setOnClickListener {
+            findNavController().navigate(R.id.action_MainFragment_to_LiveDataTestFragment)
+        }
+
     }
 }
