@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/ThemeTestFragment"
-        android:name="com.example.demo.fragment.ThemeTestFragment"
+        android:name="com.example.demo.fragment.theme.ThemeTestFragment"
         tools:layout="@layout/fragment_theme_test" />
     <fragment
         android:id="@+id/DialogPositionTestFragment"

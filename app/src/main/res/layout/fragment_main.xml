@@ -13,14 +13,6 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_theme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_rect"
-                android:text="테마 설정 테스트"
-                android:textColor="@color/test_text_color" />
-
-            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_dialog_position"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,6 +35,106 @@
                 android:background="@drawable/btn_rect"
                 android:text="setValue 그리고 postValue"
                 android:textColor="@color/test_text_color" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="1"
+                android:textColor="@color/test_text_color" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_theme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="테마 설정 테스트"
+                android:textColor="@color/test_text_color" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

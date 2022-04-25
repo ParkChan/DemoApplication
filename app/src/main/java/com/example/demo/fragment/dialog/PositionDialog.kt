@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.DialogFragment
-import com.example.demo.databinding.PositionDialogBinding
+import com.example.demo.databinding.DialogPositionBinding
 import com.example.demo.util.DisplayUtils.dpToPx
 import timber.log.Timber
 
@@ -18,7 +18,7 @@ class PositionDialog : DialogFragment() {
     private lateinit var positiveListener: View.OnClickListener
     private lateinit var negativeListener: View.OnClickListener
 
-    private lateinit var binding: PositionDialogBinding
+    private lateinit var binding: DialogPositionBinding
 
     private val dialogMessage: String by lazy {
         arguments?.getString(BUNDLE_KEY_DIALOG_MESSAGE) ?: ""
@@ -33,7 +33,7 @@ class PositionDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = PositionDialogBinding.inflate(inflater, container, false)
+        binding = DialogPositionBinding.inflate(inflater, container, false)
         isCancelable = true
         requireDialog().window?.apply {
 //            clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)

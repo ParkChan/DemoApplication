@@ -13,4 +13,5 @@
 
     <string name="dialog_common_btn_text_negative">아니오</string>
     <string name="dialog_common_btn_text_positive">네</string>
+    <string name="dialog_common_btn_text_confirm">확인</string>
 </resources>
