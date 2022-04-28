@@ -10,6 +10,9 @@
 
 
     <string name="dialog_test_content">반가워요. 테스트용 다이얼로그 입니다.</string>
+    <string name="dialog_position_test_content">테스트 다이얼로그 입니다.장문의 글로 변환합니다.테스트 다이얼로그 입니다.장문의 글로 변환합니다.테스트 다이얼로그 입니다.장문의 글로 변환합니다.테스트 다이얼로그 입니다.장문의 글로 변환합니다.
+    테스트 다이얼로그 입니다.장문의 글로 변환합니다.테스트 다이얼로그 입니다.장문의 글로 변환합니다.테스트 다이얼로그 입니다.장문의 글로 변환합니다.테스트 다이얼로그 입니다.장문의 글로 변환합니다.</string>
+
 
     <string name="dialog_common_btn_text_negative">아니오</string>
     <string name="dialog_common_btn_text_positive">네</string>

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
+import com.example.demo.R
 import com.example.demo.databinding.FragmentDialogPositionTestBinding
 import com.example.demo.databinding.RvTestItemBinding
 import com.example.demo.fragment.dialog.PositionDialog.Companion.BUNDLE_KEY_DIALOG_MESSAGE
@@ -32,7 +33,9 @@ internal class DialogPositionTestFragment :
 
     private lateinit var recyclerViewItemTouchEvent: RecyclerViewItemTouchEvent
 
-    private val mockItems = (1..100).map { it.toString().plus("테스트 다이얼로그 입니다.") }
+    private val mockItems: List<String> by lazy {
+        (1..100).map { it.toString().plus(getString(R.string.dialog_position_test_content)) }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

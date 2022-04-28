@@ -1,7 +1,11 @@
 package com.example.demo.fragment.common.ext
 
 import android.graphics.Color
+import android.widget.TextView
 import androidx.annotation.ColorInt
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.text.PrecomputedTextCompat
+import androidx.core.widget.TextViewCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.fragment.common.CustomDecoration
@@ -17,6 +21,27 @@ fun RecyclerView.setDivider(
         padding = dividerPadding ?: 0f,
         color = dividerColor ?: Color.TRANSPARENT
     )
-    addItemDecoration (decoration)
+    addItemDecoration(decoration)
+}
+
+/**
+ * PrecomputedTextCompat 테스트
+ */
+@BindingAdapter(
+    "app:asyncText",
+    "android:textSize",
+    requireAll = false
+)
+fun asyncText(view: TextView, text: CharSequence, textSize: Int?) {
+    // first, set all measurement affecting properties of the text
+    // (size, locale, typeface, direction, etc)
+    if (textSize != null) {
+        // interpret the text size as SP
+        view.textSize = textSize.toFloat()
+    }
+    val params = TextViewCompat.getTextMetricsParams(view)
+    (view as AppCompatTextView).setTextFuture(
+        PrecomputedTextCompat.getTextFuture(text, params, null)
+    )
 }
 
