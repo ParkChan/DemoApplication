@@ -43,6 +43,9 @@ class MainFragment : Fragment() {
         binding.btnLiveDataTest.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_LiveDataTestFragment)
         }
+        binding.btnOneItemAutoScroll.setOnClickListener {
+            findNavController().navigate(R.id.action_MainFragment_to_OneItemAutoScrollFragment)
+        }
 
     }
 }

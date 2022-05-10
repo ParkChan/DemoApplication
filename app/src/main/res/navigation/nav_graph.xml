@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_MainFragment_to_LiveDataTestFragment"
             app:destination="@id/LiveDataTestFragment" />
+        <action
+            android:id="@+id/action_MainFragment_to_OneItemAutoScrollFragment"
+            app:destination="@id/OneItemAutoScrollFragment" />
     </fragment>
 
     <fragment
@@ -41,6 +44,13 @@
         android:id="@+id/LiveDataTestFragment"
         android:name="com.example.demo.fragment.LiveDataTestFragment"
         tools:layout="@layout/fragment_livedata_test" />
+
+    <fragment
+        android:id="@+id/OneItemAutoScrollFragment"
+        android:name="com.example.demo.fragment.OneItemAutoScrollFragment"
+        tools:layout="@layout/fragment_one_item_auto_scroll" />
+
+
 
 
 </navigation>

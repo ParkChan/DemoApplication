@@ -50,7 +50,6 @@ internal class DialogPositionTestFragment :
 
     private fun initDefaultData() {
         secondRecyclerAdapter.replaceItems(mockItems)
-
     }
 
     override fun onClickItem(text: String) {

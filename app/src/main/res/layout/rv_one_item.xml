@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="sampleText"
+            type="String" />
+
+        <variable
+            name="listener"
+            type="com.example.demo.fragment.OneItemRecyclerAdapter.OnItemSelectListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="@{() -> listener.onClickItem(sampleText)}">
+
+        <TextView
+            android:id="@+id/tv_test"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/test_bg"
+            android:gravity="center|left"
+            android:singleLine="true"
+            android:padding="5dp"
+            android:textColor="@color/test_text_color"
+            android:textSize="@{20}"
+            app:asyncText="@{sampleText}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="안녕" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
