@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.R
 import com.example.demo.databinding.FragmentOneItemAutoScrollBinding
 import com.example.demo.databinding.RvOneItemBinding
 import com.example.demo.fragment.common.ext.setCurrentItemWithDuration
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import timber.log.Timber
 import java.util.*
 
@@ -32,7 +31,7 @@ class OneItemAutoScrollFragment : Fragment(), OneItemRecyclerAdapter.OnItemSelec
     private val mockItems: List<String> by lazy {
         (1..5).map { it.toString().plus("테스트 공지 사항입니다.테스트 공지 사항입니다.테스트 공지 사항입니다.") }
     }
-    private var timerTask: Timer? = null
+    private var autoScrollJob: Job? = null
     private var scrollPosition = 0
 
     override fun onCreateView(
@@ -71,33 +70,37 @@ class OneItemAutoScrollFragment : Fragment(), OneItemRecyclerAdapter.OnItemSelec
     }
 
     private fun startAutoScroll() {
-        timerTask?.cancel()
-        timerTask = kotlin.concurrent.timer(period = 5000) {
-
-            CoroutineScope(Dispatchers.Main).launch {
-
-                if (scrollPosition == FIRST_ITEM_POSITION) {
-                    binding.vpSample.setCurrentItem(scrollPosition, true)
-                } else {
-                    binding.vpSample.setCurrentItemWithDuration(scrollPosition, 2500)
-                }
-
-                if (scrollPosition >= mockItems.size - 1) {
-                    scrollPosition = FIRST_ITEM_POSITION
-                } else {
+        if(autoScrollJob?.isActive == true){
+            return
+        }
+        autoScrollJob = CoroutineScope(Dispatchers.Main).launch {
+            runCatching {
+                repeat(100_000_000) {
+                    delay(2_000)
                     scrollPosition++
+                    if(mockItems.size < scrollPosition){
+                        scrollPosition = 0
+                    }
+
+                    if (scrollPosition == FIRST_ITEM_POSITION) {
+                        binding.vpSample.setCurrentItem(scrollPosition, false)
+                    } else {
+                        binding.vpSample.setCurrentItemWithDuration(scrollPosition, 1_500)
+                    }
+                    Timber.d("scrollPosition is >>> $scrollPosition")
                 }
-                Timber.d("scrollPosition is >>> $scrollPosition")
+            }.onFailure {
+                Timber.d("Throwable is ${it.message}")
             }
         }
     }
 
     private fun cancelAutoScroll() {
-        timerTask?.cancel()
+        autoScrollJob?.cancel()
     }
 
     override fun onClickItem(text: String) {
-
+        Toast.makeText(context, "선택한 버튼은 >> " + text, Toast.LENGTH_SHORT).show()
     }
 
     companion object {
@@ -111,7 +114,6 @@ internal class OneItemRecyclerAdapter(
 ) : RecyclerView.Adapter<OneItemRecyclerAdapter.SampleViewHolder>() {
 
     private val itemList = mutableListOf<String>()
-    private var isAnim = false
 
     interface OnItemSelectListener {
         fun onClickItem(text: String)
@@ -125,11 +127,6 @@ internal class OneItemRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: SampleViewHolder, position: Int) {
-//        val animation = AnimationUtils.loadAnimation(
-//            holder.itemView.context,
-//            R.anim.up_from_bottom
-//        )
-//        holder.itemView.startAnimation(animation)
         holder.bind(itemList[position])
     }
 
