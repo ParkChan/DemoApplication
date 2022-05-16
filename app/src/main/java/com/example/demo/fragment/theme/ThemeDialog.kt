@@ -16,8 +16,6 @@ import timber.log.Timber
 class ThemeDialog : DialogFragment() {
 
     private lateinit var binding: DialogThemeBinding
-    private lateinit var positiveListener: View.OnClickListener
-    private lateinit var negativeListener: View.OnClickListener
     lateinit var name: String
     private var themeType = LIGHT_THEME
 
@@ -110,14 +108,6 @@ class ThemeDialog : DialogFragment() {
     override fun onDestroy() {
         super.onDestroy()
         Timber.d("lifecycle test >>> ThemeDialog lifeCycle is onDestroy")
-    }
-
-    fun positiveListener(listener: View.OnClickListener) {
-        positiveListener = listener
-    }
-
-    fun negativeListener(listener: View.OnClickListener) {
-        negativeListener = listener
     }
 
     companion object {
