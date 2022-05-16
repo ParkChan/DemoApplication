@@ -78,24 +78,27 @@ class ThemeDialog : DialogFragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Timber.d("ThemeTestFragment lifecycle is onSaveInstanceState")
+        Timber.d("lifecycle test >>> ThemeDialog lifeCycle is onSaveInstanceState")
         outState.putString(BUNDLE_KEY_THEME_TYPE, themeType)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         themeType = savedInstanceState?.getString(BUNDLE_KEY_THEME_TYPE) ?: ""
-        Timber.d("ThemeTestFragment lifecycle is onViewStateRestored themeType is $themeType")
-        if (themeType == DARK_THEME) {
-            StatusBarUtil.setStatusBarColorAndNavigationColor(
-                requireActivity(),
-                SystemBarColorType.DARK_STATUS_BAR
-            )
-        } else {
-            StatusBarUtil.setStatusBarColorAndNavigationColor(
-                requireActivity(),
-                SystemBarColorType.DEFAULT_STATUS_BAR
-            )
+        Timber.d("lifecycle test >>> ThemeDialog lifeCycle is onViewStateRestored themeType is $themeType")
+
+        if (themeType.isEmpty().not()) {
+            if (themeType == DARK_THEME) {
+                StatusBarUtil.setStatusBarColorAndNavigationColor(
+                    requireActivity(),
+                    SystemBarColorType.DARK_STATUS_BAR
+                )
+            } else {
+                StatusBarUtil.setStatusBarColorAndNavigationColor(
+                    requireActivity(),
+                    SystemBarColorType.DEFAULT_STATUS_BAR
+                )
+            }
         }
     }
 
