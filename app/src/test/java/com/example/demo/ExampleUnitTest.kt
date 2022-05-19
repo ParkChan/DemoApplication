@@ -13,7 +13,7 @@ class ExampleUnitTest {
 
     //runBlocking은 새로운 코루틴을 실행하고 완료되기 전까지 현재 스레드를 블로킹
     @Test
-    fun `코루틴 취소 테스트`() = runBlocking {
+    fun `코루틴 취소 테스트1`() = runBlocking {
 
         /**
          * launch - 새로운 코루틴을 시작하지만 결과값을 전달하지 않을때 사용
@@ -29,7 +29,7 @@ class ExampleUnitTest {
                         println("isActive is $isActive")
 
                         //However, if a coroutine is working in a computation and does not check for cancellation, then it cannot be cancelled
-                        if(isActive.not()){
+                        if (isActive.not()) {
                             println("loop내부에서 isActive가 false인지를 체크해서 명시적으로 종료")
                             println("isActive is $isActive")
                             cancel()
@@ -52,4 +52,33 @@ class ExampleUnitTest {
         job.join()
         println("끝났다!")
     }
+
+    @Test
+    fun `코루틴 취소 테스트2`() = runBlocking {
+        val job = Job()
+
+        CoroutineScope(Dispatchers.IO).launch(job) {
+            try {
+                repeat(1_000_000) {
+                    withContext(Dispatchers.IO) {
+                        println("작업중............ $it")
+                        if (isActive.not()) {
+                            println("loop내부에서 isActive가 false인지를 체크해서 명시적으로 종료")
+                            println("isActive is $isActive")
+                            cancel()
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                println("Exception is $e")
+            } finally {
+                println("I'm running finally")
+            }
+        }
+        delay(50)
+        job.cancelAndJoin()
+        delay(500)
+        println("Job canceled")
+    }
+
 }
