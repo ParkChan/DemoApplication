@@ -8,7 +8,7 @@ import org.junit.Test
  * Dispatchers.Default - CPU 연산이 많이 필요한 JSON 파싱 혹은 긴 List Sorting 에 최적화
  * Dispatchers.Main - UI 작업
  */
-class ExampleUnitTest {
+class CoroutineCancelUnitTest {
 
 
     //runBlocking은 새로운 코루틴을 실행하고 완료되기 전까지 현재 스레드를 블로킹
