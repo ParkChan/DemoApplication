@@ -9,11 +9,11 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.R
 import com.example.demo.databinding.FragmentDialogPositionTestBinding
-import com.example.demo.databinding.RvTestItemBinding
+import com.example.demo.databinding.ItemTestBinding
+import com.example.demo.fragment.base.BaseFragment
 import com.example.demo.fragment.dialog.PositionDialog.Companion.BUNDLE_KEY_DIALOG_MESSAGE
 import com.example.demo.fragment.dialog.PositionDialog.Companion.BUNDLE_KEY_RECYCLER_VIEW_Y_AXIS
 import com.example.demo.fragment.dialog.PositionDialog.Companion.BUNDLE_KEY_VIEW_HOLDER_ITEM_INFO
-import com.example.demo.fragment.base.BaseFragment
 
 
 /**
@@ -102,7 +102,7 @@ internal class SecondRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = RvTestItemBinding.inflate(inflater, parent, false)
+        val binding = ItemTestBinding.inflate(inflater, parent, false)
         binding.listener = selectListener
         return SampleViewHolder(binding)
     }
@@ -125,7 +125,7 @@ internal class SecondRecyclerAdapter(
     }
 
     internal class SampleViewHolder(
-        private val binding: RvTestItemBinding
+        private val binding: ItemTestBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(text: String) {
             binding.sampleText = text

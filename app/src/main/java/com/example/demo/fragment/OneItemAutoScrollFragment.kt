@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.databinding.FragmentOneItemAutoScrollBinding
-import com.example.demo.databinding.RvOneItemBinding
+import com.example.demo.databinding.ItemOneBinding
 import com.example.demo.fragment.common.ext.setCurrentItemWithDuration
 import kotlinx.coroutines.*
 import timber.log.Timber
@@ -139,7 +139,7 @@ internal class OneItemRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = RvOneItemBinding.inflate(inflater, parent, false)
+        val binding = ItemOneBinding.inflate(inflater, parent, false)
         binding.listener = selectListener
         return SampleViewHolder(binding)
     }
@@ -162,7 +162,7 @@ internal class OneItemRecyclerAdapter(
     }
 
     internal class SampleViewHolder(
-        private val binding: RvOneItemBinding
+        private val binding: ItemOneBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(text: String) {
             binding.sampleText = text

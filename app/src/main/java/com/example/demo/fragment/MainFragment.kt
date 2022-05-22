@@ -46,6 +46,8 @@ class MainFragment : Fragment() {
         binding.btnOneItemAutoScroll.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_OneItemAutoScrollFragment)
         }
-
+        binding.btn2WayScroll.setOnClickListener {
+            findNavController().navigate(R.id.action_MainFragment_to_RecyclerLeftHoldScrollTestFragment)
+        }
     }
 }
