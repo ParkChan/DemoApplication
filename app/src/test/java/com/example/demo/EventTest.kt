@@ -6,6 +6,9 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 
+/**
+ * gist.github.com/JoseAlcerreca/5b661f1800e1e654f07cc54fe87441af#file-event-kt
+ */
 class EventTest {
 
     private lateinit var event: Event<Boolean>
