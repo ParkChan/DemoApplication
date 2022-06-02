@@ -13,6 +13,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+/**
+ * 라이브데이터 post 와 value의 차이점을 확인
+ */
 class LiveDataTestFragment : Fragment() {
 
     private lateinit var binding: FragmentLivedataTestBinding

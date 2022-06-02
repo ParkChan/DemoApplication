@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import com.example.demo.SubActivity
+import com.example.demo.SecondActivity
 import com.example.demo.databinding.FragmentStartActivityTestBinding
 import timber.log.Timber
 
@@ -33,7 +33,7 @@ class StartActivityTestFragment : Fragment() {
     private lateinit var binding: FragmentStartActivityTestBinding
 
     private fun openActivityForResult() {
-        val intent = Intent(requireContext(), SubActivity::class.java)
+        val intent = Intent(requireContext(), SecondActivity::class.java)
         startForResult.launch(intent)
     }
 
@@ -59,7 +59,7 @@ class StartActivityTestFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnNextSubActiviy.setOnClickListener {
-            val intent = Intent(context, SubActivity::class.java)
+            val intent = Intent(context, SecondActivity::class.java)
             //SingleTop이 필요한 경우 분기
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
                 intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
@@ -83,7 +83,7 @@ class StartActivityTestFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Timber.d("requestCode : $requestCode resultCode : $resultCode")
-        if (requestCode == SubActivity.ACTIVITY_RESULT_CODE) {
+        if (requestCode == SecondActivity.ACTIVITY_RESULT_CODE) {
             Toast.makeText(requireContext(), "onActivityResult >> $resultCode", Toast.LENGTH_SHORT)
                 .show()
         }
