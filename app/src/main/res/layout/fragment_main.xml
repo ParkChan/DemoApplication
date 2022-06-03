@@ -26,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_rect"
                 android:text="startActivity() → startActivityForResult() test "
+                android:textAllCaps="false"
                 android:textColor="@color/test_text_color" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -34,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_rect"
                 android:text="setValue 그리고 postValue"
+                android:textAllCaps="false"
                 android:textColor="@color/test_text_color" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -58,6 +60,16 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_rect"
                 android:text="left reclycler hold | horizontal in reclycler"
+                android:textAllCaps="false"
+                android:textColor="@color/test_text_color" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_item_touch_helper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="recyclerView 터치 이동 처리 및 스와이프 이벤트 처리"
+                android:textAllCaps="false"
                 android:textColor="@color/test_text_color" />
 
         </LinearLayout>

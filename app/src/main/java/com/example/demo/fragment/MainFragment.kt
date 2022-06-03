@@ -1,5 +1,6 @@
 package com.example.demo.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.demo.R
+import com.example.demo.activity.ItemTouchHelperActivity
 import com.example.demo.databinding.FragmentMainBinding
 
 /**
@@ -48,6 +50,13 @@ class MainFragment : Fragment() {
         }
         binding.btn2WayScroll.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_RecyclerLeftHoldScrollTestFragment)
+        }
+        binding.btnItemTouchHelper.setOnClickListener {
+            startActivity(
+                Intent(
+                    requireContext(),
+                    ItemTouchHelperActivity::class.java
+                ).apply { flags = Intent.FLAG_ACTIVITY_SINGLE_TOP })
         }
     }
 }
