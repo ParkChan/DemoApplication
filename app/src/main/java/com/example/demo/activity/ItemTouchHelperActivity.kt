@@ -62,6 +62,21 @@ class ItemTouchHelperActivity : AppCompatActivity() {
             return itemList.size
         }
 
+        override fun onItemMove(startPosition: Int, endPosition: Int): Boolean {
+            val name = itemList[startPosition]
+
+            itemList.removeAt(startPosition)
+            itemList.add(endPosition, name)
+
+            notifyItemMoved(startPosition, endPosition)
+            return true
+        }
+
+        override fun onItemSwipe(position: Int) {
+            itemList.removeAt(position)
+            notifyItemRemoved(position)
+        }
+
         @SuppressLint("NotifyDataSetChanged")
         fun replaceItems(item: List<String>) {
             itemList.run {
@@ -78,21 +93,6 @@ class ItemTouchHelperActivity : AppCompatActivity() {
                 binding.sampleText = text
                 binding.executePendingBindings()
             }
-        }
-
-        override fun onItemMove(startPosition: Int, endPosition: Int): Boolean {
-            val name = itemList[startPosition]
-
-            itemList.removeAt(startPosition)
-            itemList.add(endPosition, name)
-
-            notifyItemMoved(startPosition, endPosition)
-            return true
-        }
-
-        override fun onItemSwipe(position: Int) {
-            itemList.removeAt(position)
-            notifyItemRemoved(position)
         }
     }
 }
