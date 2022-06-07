@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.demo.R
 import com.example.demo.activity.ItemTouchHelperActivity
+import com.example.demo.activity.WebViewActivity
 import com.example.demo.databinding.FragmentMainBinding
 
 /**
@@ -56,6 +57,13 @@ class MainFragment : Fragment() {
                 Intent(
                     requireContext(),
                     ItemTouchHelperActivity::class.java
+                ).apply { flags = Intent.FLAG_ACTIVITY_SINGLE_TOP })
+        }
+        binding.btnWebviewDebug.setOnClickListener {
+            startActivity(
+                Intent(
+                    requireContext(),
+                    WebViewActivity::class.java
                 ).apply { flags = Intent.FLAG_ACTIVITY_SINGLE_TOP })
         }
     }

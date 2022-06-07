@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import com.example.demo.SecondActivity
+import com.example.demo.activity.SecondActivity
 import com.example.demo.databinding.FragmentStartActivityTestBinding
 import timber.log.Timber
 
