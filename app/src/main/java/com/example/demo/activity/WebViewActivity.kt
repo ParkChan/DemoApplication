@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.demo.databinding.ActivityWebviewBinding
 
 /**
- * 웹뷰 디버깅 테스트
+ * chrome://inspect를 통한 웹뷰 디버깅 테스트
  */
 class WebViewActivity : AppCompatActivity() {
 
