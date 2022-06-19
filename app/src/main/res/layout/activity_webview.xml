@@ -7,6 +7,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_light"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_percent="0.5"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:background="@color/test_bg"
+            android:text="Light"
+            android:textColor="@color/test_text_color"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_dark"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            android:background="@color/test_bg"
+            android:text="Dark"
+            android:textColor="@color/test_text_color"
+            app:layout_constraintStart_toEndOf="@id/btn_light"
+            app:layout_constraintTop_toTopOf="parent"
+            />
         <WebView
             android:id="@+id/wv_test"
             android:layout_width="0dp"
@@ -14,7 +37,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_light"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
