@@ -53,6 +53,9 @@ class CoroutineCancelUnitTest {
         println("끝났다!")
     }
 
+    /**
+     * Exception 확인하기
+     */
     @Test
     fun `코루틴 취소 테스트2`() = runBlocking {
         val job = Job()
