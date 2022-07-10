@@ -1,4 +1,4 @@
-package com.example.demo
+package com.example.demo.coroutine
 
 import kotlinx.coroutines.*
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.example.demo
+package com.example.demo.coroutine
 
 import com.example.demo.util.InstantExecutorExtension
 import kotlinx.coroutines.delay
