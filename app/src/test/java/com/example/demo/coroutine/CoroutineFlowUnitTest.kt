@@ -1,13 +1,10 @@
 package com.example.demo.coroutine
 
-import com.example.demo.util.InstantExecutorExtension
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(InstantExecutorExtension::class)
 class CoroutineFlowUnitTest {
 
     val flow = flow<Int> {
