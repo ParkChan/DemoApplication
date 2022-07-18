@@ -27,12 +27,12 @@ class BigDecimalUnitTest {
         //이러한 부동 소수점 표현 방식의 오차를 해결하기 위해 자바에서는 BigDecimal 클래스를 제공하고 있다.
         //소수점을 다루는 연산을 한다면 BigDecimal 클래스의 사용은 필수적이다.
 
-        val price1 = BigDecimal("12.23")
-        val price2 = BigDecimal.valueOf(34.45)
+        val price1 = BigDecimal("12.23")        //올바른 사용예시
+        val price2 = BigDecimal.valueOf(34.45)  //올바른 사용예시
 
         // 아래와 같이 사용하면 안 된다.
+        //val badCase = BigDecimal(12.23)           //잘못된 사용예시
         // 12.230000000000000426325641456060111522674560546875
-        //val badCase = BigDecimal(12.23)
     }
 
     @Test
