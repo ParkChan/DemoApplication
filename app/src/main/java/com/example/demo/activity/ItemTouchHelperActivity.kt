@@ -12,7 +12,8 @@ import com.example.demo.databinding.ItemTouchBinding
 
 /**
  * 리스트 아이템을 터치하여 정렬하는 예제
- * 참조 : https://github.com/dhtmaks2540/ItemTouchHelperExample
+ * 참조 1 : https://github.com/dhtmaks2540/ItemTouchHelperExample
+ * 참조 2 : https://github.com/iPaulPro/Android-ItemTouchHelper-Demo
  */
 class ItemTouchHelperActivity : AppCompatActivity() {
 
