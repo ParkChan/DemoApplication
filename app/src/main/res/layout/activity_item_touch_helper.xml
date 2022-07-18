@@ -11,13 +11,14 @@
             android:id="@+id/rv_sample"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:dividerColor="@{@color/black}"
+            app:dividerColor="@{@color/gray}"
             app:dividerHeight="@{@dimen/recycler_view_divider_height}"
+            app:dividerPadding="@{@dimen/recycler_view_divider_height}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_touch" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

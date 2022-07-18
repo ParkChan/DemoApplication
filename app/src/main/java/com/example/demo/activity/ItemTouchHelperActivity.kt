@@ -77,6 +77,10 @@ class ItemTouchHelperActivity : AppCompatActivity() {
             notifyItemRemoved(position)
         }
 
+        override fun onDropDown() {
+
+        }
+
         @SuppressLint("NotifyDataSetChanged")
         fun replaceItems(item: List<String>) {
             itemList.run {

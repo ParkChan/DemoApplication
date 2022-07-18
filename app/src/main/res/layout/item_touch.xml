@@ -15,18 +15,18 @@
         android:id="@+id/cl_root"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@color/white"
-        >
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/tv_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@color/test_bg"
             android:gravity="center"
-            android:textSize="20sp"
             android:text="@{sampleText}"
             android:textColor="@color/test_text_color"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
