@@ -9,13 +9,28 @@ class KotlinCollectionBasicUnitTest {
     fun `고정 목록 생성 테스트`() {
         val n = 5
         val items1: List<Int> = List(n) { 0 }
-        println(items1)
+        println("items1 is $items1")
 
         val items2: List<Int> = (1..n).map { 0 }
-        println(items2)
+        println("items2 is $items2")
 
+        //Collections.nCopies() 함수는 지정된 객체의 지정된 복사본의 변경할 수 없는 목록을 반환
         val items3: List<Int> = Collections.nCopies(n, 0)
-        println(items3)
+        println("items3 is $items3")
+
+
+        val size = 5
+        val value = 1
+        //지정된 크기의 어레이을 만들고 기본 fill() 주어진 값으로 초기화
+        val data = arrayOfNulls<Int>(size)
+        data.fill(value)
+
+        val items4: List<Int> = data.toList() as List<Int>
+        println("items4 is $items4")
+
+        val items5: MutableList<Int> = data.toList() as MutableList<Int>
+        items5.removeLast()
+        println("items5 is $items5")
     }
 
 
