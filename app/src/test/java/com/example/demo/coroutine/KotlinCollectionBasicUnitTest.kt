@@ -4,6 +4,14 @@ import org.junit.Test
 
 class KotlinCollectionBasicUnitTest {
 
+    @Test
+    fun `고정 목록 생성 테스트`() {
+        val n = 5
+        val list: List<Int> = List(n) { 0 }
+        println(list)
+    }
+
+
     private data class Person(val name: String, val age: Int)
 
     private val canBeInClub27 = { p: Person -> p.age <= 27 }
