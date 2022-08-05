@@ -1,14 +1,21 @@
 package com.example.demo.coroutine
 
 import org.junit.Test
+import java.util.*
 
 class KotlinCollectionBasicUnitTest {
 
     @Test
     fun `고정 목록 생성 테스트`() {
         val n = 5
-        val list: List<Int> = List(n) { 0 }
-        println(list)
+        val items1: List<Int> = List(n) { 0 }
+        println(items1)
+
+        val items2: List<Int> = (1..n).map { 0 }
+        println(items2)
+
+        val items3: List<Int> = Collections.nCopies(n, 0)
+        println(items3)
     }
 
 
