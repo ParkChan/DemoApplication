@@ -3,6 +3,9 @@ package com.example.demo
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.demo.databinding.ActivityMainBinding
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -34,17 +37,16 @@ class MainActivity : AppCompatActivity() {
 //            Timber.d("Test CHAN >>> State Collect End #1 - ${Thread.currentThread().name}")
 //        }
 
-        MainScope().launch {
-            viewModel.startSendDataToSharedFlow()
-        }
-
-        MainScope().launch {
-            viewModel.sharedFlow.collect {
-                Timber.d("Test CHAN >>> sharedFlow #2: $it - ${Thread.currentThread().name}")
+        viewModel.startSendDataToSharedFlow()
+        //참조: https://developer.android.com/kotlin/flow/stateflow-and-sharedflow?hl=ko
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.sharedFlow.collect {
+                    Timber.d("Test CHAN >>> sharedFlow #2: $it - ${Thread.currentThread().name}")
+                }
+                Timber.d("Test CHAN >>> State Collect End #2 - ${Thread.currentThread().name}")
             }
-            Timber.d("Test CHAN >>> State Collect End #2 - ${Thread.currentThread().name}")
         }
-
     }
 
     override fun onDestroy() {

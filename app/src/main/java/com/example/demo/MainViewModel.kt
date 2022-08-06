@@ -1,10 +1,12 @@
 package com.example.demo
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class MainViewModel : ViewModel() {
@@ -26,7 +28,7 @@ class MainViewModel : ViewModel() {
     )
     val sharedFlow = _sharedFlow
     // SharedFlow에 데이터 전달
-    suspend fun startSendDataToSharedFlow() {
+    fun startSendDataToSharedFlow() = viewModelScope.launch {
         repeat(10) {
             Timber.d("Test CHAN >>> startSendDataToSharedFlow $it")
             //_sharedFlow.value value 지원안함...
