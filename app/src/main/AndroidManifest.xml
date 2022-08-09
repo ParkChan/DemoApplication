@@ -27,6 +27,7 @@
         <activity android:name="com.example.demo.activity.WebViewActivity"
             android:theme="@style/Theme.DemoApplication.NoActionBar"
             />
+        <activity android:name="com.example.demo.activity.PopupwindowActivity" />
 
     </application>
 
