@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.demo.R
 import com.example.demo.databinding.ActivityPopupWindowBinding
 import com.example.demo.databinding.ItemSpinnerBinding
 import com.example.demo.databinding.SpinnerPopupWindowBinding
@@ -40,10 +42,19 @@ class PopupwindowActivity : AppCompatActivity(),
 
         binding.btnSpinner.setOnClickListener {
 
+            val button = it as AppCompatButton
+
+            //팝업이 열렸을때 버튼 아이콘 상태 변경
+            button.setCompoundDrawablesWithIntrinsicBounds(
+                0,
+                0,
+                R.drawable.expand_less,
+                0
+            )
+
             val binding = SpinnerPopupWindowBinding.inflate(layoutInflater)
             binding.rvList.adapter = secondRecyclerAdapter
             secondRecyclerAdapter.replaceItems(mockItems)
-
 
             val popupWindow = PopupWindow(binding.root, 200.dpToPx.toInt(), 200.dpToPx.toInt())
             popupWindow.contentView = binding.root
@@ -58,8 +69,15 @@ class PopupwindowActivity : AppCompatActivity(),
                     layoutManager.height / 2
                 )
             }
+
+            //팝업이 닫혔을때 버튼 아이콘 상태 변경
             popupWindow.setOnDismissListener {
-                Toast.makeText(this, "팝업 닫힘", Toast.LENGTH_SHORT).show()
+                button.setCompoundDrawablesWithIntrinsicBounds(
+                    0,
+                    0,
+                    R.drawable.expand_more,
+                    0
+                )
             }
         }
     }
