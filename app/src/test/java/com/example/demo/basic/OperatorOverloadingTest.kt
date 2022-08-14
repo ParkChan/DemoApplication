@@ -75,7 +75,7 @@ class OperatorOverloadingTest {
     }
 
     @Test
-    fun `Collection의 listmap에서는  과 유사한 getset 확장하기`() {
+    fun `Collection의 list,map 과 유사한 get,set 확장하기`() {
         val position = Position(10, 20)
         println(position)
         position[0] = 30
