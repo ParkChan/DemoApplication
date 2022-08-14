@@ -1,8 +1,10 @@
 package com.example.demo.basic
 
 import org.junit.Test
+import java.util.*
 
 //[블로그](https://thdev.tech/kotlin/2018/04/01/Kotlin-Operator-Overloading/)
+//[Notion정리](https://www.notion.so/2022-08-14-invoke-e6b7abf412364250a11a89deee11f0c6)
 class OperatorOverloadingTest {
 
     @Test
@@ -84,14 +86,14 @@ class OperatorOverloadingTest {
     }
 
     @Test
-    fun `Destructuring Declarations(분할)`(){
+    fun `Destructuring Declarations(분할)`() {
         val (a, b) = Position(10, 20)
         println(a)
         println(b)
     }
 
     @Test
-    fun `split에서 사용하기`(){
+    fun `split에서 사용하기`() {
         data class DataName(val fileName: String, val extension: String)
 
         fun String.split(): DataName {
@@ -100,5 +102,42 @@ class OperatorOverloadingTest {
         }
 
         println("ABC.md".split())
+    }
+
+    operator fun invoke(str: String): String {
+        return str.uppercase(Locale.getDefault()) // 모두 대문자로 바꿔줌
+    }
+
+    @Test
+    fun `invoke 사용하기 예시1`() {
+        println(MyFunction.invoke("hello")) // HELLO
+        println(MyFunction("hello"))        // HELLO
+    }
+
+    @Test
+    fun `invoke 사용하기 예시2 Listener CallBack과 유사한 처리`() {
+//        performWork("http://...") { result ->
+//            //use result
+//            println(result)
+//        }
+
+        val callBack = { result: String? -> println(result) }
+        performWork("http://...", callBack)
+    }
+
+    private fun performWork(param1: String, myCallback: (result: String?) -> Unit) {
+        println(param1)
+        println("perform some network work")
+
+        // on network finished
+        //myCallback.invoke("result from network")
+        myCallback("result from network")
+    }
+
+}
+
+object MyFunction {
+    operator fun invoke(str: String): String {
+        return str.uppercase(Locale.getDefault()) // 모두 대문자로 바꿔줌
     }
 }
