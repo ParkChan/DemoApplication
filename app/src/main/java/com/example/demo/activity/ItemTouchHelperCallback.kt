@@ -12,8 +12,8 @@ class ItemTouchHelperCallback(private val listener: ItemTouchHelperListener) : I
         viewHolder: RecyclerView.ViewHolder
     ): Int {
         val dragFlags = ItemTouchHelper.UP or ItemTouchHelper.DOWN
-        //val swipeFlags = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        return makeMovementFlags(dragFlags, 0)
+        val swipeFlags = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        return makeMovementFlags(dragFlags, swipeFlags) // swipeFlags 대신 0 으로 설정시 스와이프 처리X
     }
 
 

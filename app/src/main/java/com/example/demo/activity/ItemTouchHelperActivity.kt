@@ -44,6 +44,8 @@ class ItemTouchHelperActivity : AppCompatActivity() {
             val itemTouchHelperCallback = ItemTouchHelperCallback(adapter)
             val helper = ItemTouchHelper(itemTouchHelperCallback)
             helper.attachToRecyclerView(binding.rvSample)
+
+            adapter.setItemTouchHelper(helper)
         }
 
     }
@@ -54,18 +56,23 @@ class ItemTouchHelperActivity : AppCompatActivity() {
         private val itemList = mutableListOf<String>()
         private lateinit var touchHelper: ItemTouchHelper
 
+        @SuppressLint("ClickableViewAccessibility")
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleViewHolder {
             val inflater = LayoutInflater.from(parent.context)
             val binding = ItemTouchBinding.inflate(inflater, parent, false)
+
+            val holder = SampleViewHolder(binding)
+
             binding.tvDrag.setOnTouchListener { _, event ->
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
-                        touchHelper?.startDrag(SampleViewHolder(binding))
+                        touchHelper.startDrag(holder)
+                        binding.root.isEnabled = false
                     }
                 }
                 false
             }
-            return SampleViewHolder(binding)
+            return holder
         }
 
         override fun onBindViewHolder(holder: SampleViewHolder, position: Int) {
@@ -111,6 +118,7 @@ class ItemTouchHelperActivity : AppCompatActivity() {
         class SampleViewHolder(
             private val binding: ItemTouchBinding
         ) : RecyclerView.ViewHolder(binding.root) {
+
             fun bind(text: String) {
                 binding.sampleText = text
                 binding.executePendingBindings()
