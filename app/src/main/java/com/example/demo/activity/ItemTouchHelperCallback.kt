@@ -16,6 +16,7 @@ class ItemTouchHelperCallback(private val listener: ItemTouchHelperListener) : I
         return makeMovementFlags(dragFlags, 0)
     }
 
+
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,

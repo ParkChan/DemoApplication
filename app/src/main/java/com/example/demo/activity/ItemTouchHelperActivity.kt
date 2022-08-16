@@ -3,6 +3,8 @@ package com.example.demo.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -18,9 +20,7 @@ import com.example.demo.databinding.ItemTouchBinding
 class ItemTouchHelperActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityItemTouchHelperBinding
-    private val adapter: SecondRecyclerAdapter by lazy {
-        SecondRecyclerAdapter()
-    }
+    private lateinit var adapter: SecondRecyclerAdapter
     private val mockItems: List<String> by lazy {
         (1..100).map { it.toString() }
     }
@@ -35,12 +35,16 @@ class ItemTouchHelperActivity : AppCompatActivity() {
     }
 
     private fun initAdapter() {
-        binding.rvSample.adapter = adapter
-        adapter.replaceItems(mockItems)
 
-        val itemTouchHelperCallback = ItemTouchHelperCallback(adapter)
-        val helper = ItemTouchHelper(itemTouchHelperCallback)
-        helper.attachToRecyclerView(binding.rvSample)
+        adapter = SecondRecyclerAdapter()
+        if (::adapter.isInitialized) {
+            binding.rvSample.adapter = adapter
+            adapter.replaceItems(mockItems)
+
+            val itemTouchHelperCallback = ItemTouchHelperCallback(adapter)
+            val helper = ItemTouchHelper(itemTouchHelperCallback)
+            helper.attachToRecyclerView(binding.rvSample)
+        }
 
     }
 
@@ -48,10 +52,19 @@ class ItemTouchHelperActivity : AppCompatActivity() {
         RecyclerView.Adapter<SecondRecyclerAdapter.SampleViewHolder>(), ItemTouchHelperListener {
 
         private val itemList = mutableListOf<String>()
+        private lateinit var touchHelper: ItemTouchHelper
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SampleViewHolder {
             val inflater = LayoutInflater.from(parent.context)
             val binding = ItemTouchBinding.inflate(inflater, parent, false)
+            binding.tvDrag.setOnTouchListener { _, event ->
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        touchHelper?.startDrag(SampleViewHolder(binding))
+                    }
+                }
+                false
+            }
             return SampleViewHolder(binding)
         }
 
@@ -89,6 +102,10 @@ class ItemTouchHelperActivity : AppCompatActivity() {
                 addAll(item)
                 notifyDataSetChanged()
             }
+        }
+
+        fun setItemTouchHelper(helper: ItemTouchHelper) {
+            touchHelper = helper
         }
 
         class SampleViewHolder(
