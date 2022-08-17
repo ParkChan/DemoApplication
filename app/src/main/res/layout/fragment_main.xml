@@ -90,6 +90,15 @@
                 android:textAllCaps="false"
                 android:textColor="@color/test_text_color" />
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_nav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="탭메뉴 테스트"
+                android:textAllCaps="false"
+                android:textColor="@color/test_text_color" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

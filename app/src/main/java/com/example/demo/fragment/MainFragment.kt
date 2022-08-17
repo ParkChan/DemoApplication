@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.chan.navigation.TabMenuMainActivity
 import com.example.demo.R
 import com.example.demo.activity.ItemTouchHelperActivity
 import com.example.demo.activity.PopupwindowActivity
@@ -72,6 +73,13 @@ class MainFragment : Fragment() {
                 Intent(
                     context,
                     PopupwindowActivity::class.java
+                ).apply { flags = Intent.FLAG_ACTIVITY_SINGLE_TOP })
+        }
+        binding.btnNav.setOnClickListener{
+            startActivity(
+                Intent(
+                    context,
+                    TabMenuMainActivity::class.java
                 ).apply { flags = Intent.FLAG_ACTIVITY_SINGLE_TOP })
         }
     }
