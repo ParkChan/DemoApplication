@@ -9,7 +9,12 @@ import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.chan.navigation.databinding.FragmentOneBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class OneFragment : Fragment() {
@@ -28,11 +33,13 @@ class OneFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel.testLiveData.observeEvent(viewLifecycleOwner){
-//            Timber.d("onViewCreated One")
-//        }
-        viewModel.testLiveData.observeEvent(viewLifecycleOwner){
-            Timber.d("CHAN >>> onViewCreated One")
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.testLiveData.collect {
+                    Timber.d("CHAN >>> onViewCreated One")
+                }
+            }
         }
     }
 

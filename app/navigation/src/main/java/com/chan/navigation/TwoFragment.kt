@@ -7,7 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.chan.navigation.databinding.FragmentTwoBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class TwoFragment : Fragment() {
@@ -26,42 +31,43 @@ class TwoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel.testLiveData.observeEvent(viewLifecycleOwner) {
-//            Timber.d("onViewCreated Two")
-//        }
-        viewModel.testLiveData.observeEvent(viewLifecycleOwner){
-            Timber.d("CHAN >>> onViewCreated Two")
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.testLiveData.collect {
+                    Timber.d("CHAN >>> onViewCreated Two")
+                }
+            }
         }
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d("CHAN >>>", "onPause: Two")
+        Timber.d("onPause: Two")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Log.d("CHAN >>>", "onSaveInstanceState: Two")
+        Timber.d("onSaveInstanceState: Two")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d("CHAN >>>", "onStop: Two")
+        Timber.d("onStop: Two")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.d("CHAN >>>", "onDestroyView: Two")
+        Timber.d("onDestroyView: Two")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("CHAN >>>", "onDestroy: Two")
+        Timber.d("onDestroy: Two")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Log.d("CHAN >>>", "onDetach: Two")
+        Timber.d("onDetach: Two")
     }
 
     companion object {

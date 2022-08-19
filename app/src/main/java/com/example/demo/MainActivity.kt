@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Timber.d("lifecycle test >>> MainActivity lifeCycle is onCreate")
+//        Timber.d("lifecycle test >>> MainActivity lifeCycle is onCreate")
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -42,9 +42,9 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.sharedFlow.collect {
-                    Timber.d("Test CHAN >>> sharedFlow #2: $it - ${Thread.currentThread().name}")
+//                    Timber.d("Test CHAN >>> sharedFlow #2: $it - ${Thread.currentThread().name}")
                 }
-                Timber.d("Test CHAN >>> State Collect End #2 - ${Thread.currentThread().name}")
+//                Timber.d("Test CHAN >>> State Collect End #2 - ${Thread.currentThread().name}")
             }
         }
     }

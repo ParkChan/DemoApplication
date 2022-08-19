@@ -30,7 +30,7 @@ class MainViewModel : ViewModel() {
     // SharedFlow에 데이터 전달
     fun startSendDataToSharedFlow() = viewModelScope.launch {
         repeat(10) {
-            Timber.d("Test CHAN >>> startSendDataToSharedFlow $it")
+//            Timber.d("Test CHAN >>> startSendDataToSharedFlow $it")
             //_sharedFlow.value value 지원안함...
             _sharedFlow.emit(it)
             delay(500)

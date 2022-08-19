@@ -8,7 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.chan.navigation.databinding.FragmentThreeBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 /**
@@ -36,42 +41,43 @@ class ThreeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel.testLiveData.observeEvent(viewLifecycleOwner) {
-//            Timber.d("CHAN >>> onViewCreated Three")
-//        }
-        viewModel.testLiveData.observeEvent(viewLifecycleOwner){
-            Timber.d("CHAN >>> onViewCreated Three")
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.testLiveData.collect {
+                    Timber.d( "onViewCreated Three")
+                }
+            }
         }
     }
 
     override fun onPause() {
         super.onPause()
-        Log.d("CHAN >>>", "onPause: Three")
+        Timber.d( "onPause: Three")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Log.d("CHAN >>>", "onSaveInstanceState: Three")
+        Timber.d( "onSaveInstanceState: Three")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d("CHAN >>>", "onStop: Three")
+        Timber.d("onStop: Three")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.d("CHAN >>>", "onDestroyView: Three")
+        Timber.d("onDestroyView: Three")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("CHAN >>>", "onDestroy: Three")
+        Timber.d("onDestroy: Three")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Log.d("CHAN >>>", "onDetach: Three")
+        Timber.d( "onDetach: Three")
     }
 
     companion object {

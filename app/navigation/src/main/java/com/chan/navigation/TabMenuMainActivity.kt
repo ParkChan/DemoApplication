@@ -6,7 +6,13 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.chan.navigation.databinding.ActivityTabBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 /**
@@ -24,27 +30,24 @@ class TabMenuMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("CHAN >>>", "onCreate")
-
-        Log.d("beokbeok", "MainActivity is $this")
-        Log.d("beokbeok", "oneFragment is $oneFragment")
-        Log.d("beokbeok", "twoFragment is $twoFragment")
-        Log.d("beokbeok", "threeFragment is $threeFragment")
-        Log.d("beokbeok", "fourFragment is $fourFragment")
+        Timber.d(  "onCreate")
 
         setupBinding()
         setupUI()
         setupListener()
+
+        viewModel.doTest()
+
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        Log.d("beokbeok", "onRestoreInstanceState")
+        Timber.d( "onRestoreInstanceState")
     }
 
     override fun onResume() {
         super.onResume()
-        Log.d("beokbeok", "onResume")
+        Timber.d( "onResume")
     }
 
     private fun setupBinding() {
@@ -73,7 +76,6 @@ class TabMenuMainActivity : AppCompatActivity() {
                 }
                 commitAllowingStateLoss()
             }
-        viewModel.doTest()
     }
 
     private fun setupListener() {
@@ -87,8 +89,12 @@ class TabMenuMainActivity : AppCompatActivity() {
             true
         }
 
-        viewModel.testLiveData.observeEvent(this){
-            Timber.d("CHAN >>> onViewCreated 액티비티")
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.testLiveData.collect {
+                    Timber.d("CHAN >>> onViewCreated 액티비티")
+                }
+            }
         }
     }
 
@@ -101,7 +107,7 @@ class TabMenuMainActivity : AppCompatActivity() {
             .commitAllowingStateLoss()
     }
 
-    private fun hideAllFragments(){
+    private fun hideAllFragments() {
         supportFragmentManager.fragments.forEach {
             it?.let {
                 supportFragmentManager.beginTransaction().hide(it).commit()
@@ -111,17 +117,17 @@ class TabMenuMainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        Log.d("beokbeok", "onPause")
+        Timber.d(  "onPause")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Log.d("beokbeok", "onSaveInstanceState")
+        Timber.d( "onSaveInstanceState")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("beokbeok", "onDestroy")
+        Timber.d( "onDestroy")
     }
 
 
