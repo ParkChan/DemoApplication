@@ -16,27 +16,23 @@ class AsSequenceUnitTest {
         fruits.filter {
             println("checking the length of $it")
             it.length > 5
-        }
-            .map {
-                println("mapping to the length of $it")
-                "${it.length}"
-            }
-            .toList()
+        }.map {
+            println("mapping to the length of $it")
+            "${it.length}"
+        }.toList()
 
     }
 
     @Test
     fun `Lazy evaluation은 지금 하지 않아도 되는 연산은 최대한 뒤로 미루는 방식`() {
         val fruits = listOf("apple", "banana", "kiwi", "cherry")
-        fruits.asSequence()
-            .filter {
-                println("checking the length of $it")
-                it.length > 5
-            }
-            .map {
-                println("mapping to the length of $it")
-                "${it.length}"
-            }
+        fruits.asSequence().filter {
+            println("checking the length of $it")
+            it.length > 5
+        }.map {
+            println("mapping to the length of $it")
+            "${it.length}"
+        }
             .toList()
     }
 }
