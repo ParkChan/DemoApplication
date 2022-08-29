@@ -16,7 +16,7 @@ import com.example.demo.databinding.FragmentStartActivityTestBinding
 import timber.log.Timber
 
 /**
- *
+ * [Notion](https://www.notion.so/2022-02-25-startActivity-startForAcitivtyResult-or-ActivityResultLauncher-ClearTop-not-work-ff3560cdce094adf89fae4bc0c3d4d12)
  * startActivity() → startActivityForResult() 호출시 버전에 따른 동작 차이
  *
  * api level 31 : singleTop 으로 startActivity() → startActivityForResult()
@@ -26,7 +26,6 @@ import timber.log.Timber
  * startActivity() → startActivityForResult() 액티비티 2개 생성됨
  * singleTop이 적용되지 않음
  *
- * [공통] startActivity() → startActivity() 는 singleTop 정상동작
  */
 class StartActivityTestFragment : Fragment() {
 
@@ -82,7 +81,7 @@ class StartActivityTestFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Timber.d("requestCode : $requestCode resultCode : $resultCode")
+        Timber.d(">>> StartActivityTestFragment requestCode : $requestCode resultCode : $resultCode")
         if (requestCode == SecondActivity.ACTIVITY_RESULT_CODE) {
             Toast.makeText(requireContext(), "onActivityResult >> $resultCode", Toast.LENGTH_SHORT)
                 .show()

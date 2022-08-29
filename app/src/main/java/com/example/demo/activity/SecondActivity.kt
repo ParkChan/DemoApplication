@@ -33,6 +33,11 @@ class SecondActivity : AppCompatActivity() {
         finish()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Timber.d(">>> SecondActivity requestCode : $requestCode resultCode : $resultCode")
+    }
+
     companion object {
         const val ACTIVITY_RESULT_CODE = 1000
         fun start(activity: Activity) {

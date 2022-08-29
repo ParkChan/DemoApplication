@@ -37,20 +37,20 @@ class MainActivity : AppCompatActivity() {
 //            Timber.d("Test CHAN >>> State Collect End #1 - ${Thread.currentThread().name}")
 //        }
 
-        viewModel.startSendDataToSharedFlow()
-        //참조: https://developer.android.com/kotlin/flow/stateflow-and-sharedflow?hl=ko
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.sharedFlow.collect {
+//        viewModel.startSendDataToSharedFlow()
+//        //참조: https://developer.android.com/kotlin/flow/stateflow-and-sharedflow?hl=ko
+//        lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.sharedFlow.collect {
 //                    Timber.d("Test CHAN >>> sharedFlow #2: $it - ${Thread.currentThread().name}")
-                }
+//                }
 //                Timber.d("Test CHAN >>> State Collect End #2 - ${Thread.currentThread().name}")
-            }
-        }
+//            }
+//        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Timber.d("lifecycle test >>> MainActivity lifeCycle is onDestroy")
+//        Timber.d("lifecycle test >>> MainActivity lifeCycle is onDestroy")
     }
 }
