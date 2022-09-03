@@ -1,7 +1,10 @@
 package com.example.demo.activity
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -31,6 +34,19 @@ class WebViewActivity : AppCompatActivity() {
         binding = ActivityWebviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            //Deprecated
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
+        }
+
+        // 상단에 상태 표시줄이 있는 전체 화면 활동 만들기
+        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
         binding.wvTest.settings.apply {
             javaScriptEnabled = true

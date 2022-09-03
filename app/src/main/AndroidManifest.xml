@@ -22,10 +22,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name="com.example.demo.activity.SecondActivity" />
+
         <activity android:name="com.example.demo.activity.ItemTouchHelperActivity" />
-        <activity android:name="com.example.demo.activity.WebViewActivity"
+
+        <activity
+            android:name="com.example.demo.activity.WebViewActivity"
             android:theme="@style/Theme.DemoApplication.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
+            android:windowTranslucentStatus="true"
+            android:windowTranslucentNavigation="true"
             />
         <activity android:name="com.example.demo.activity.PopupwindowActivity" />
 
