@@ -3,17 +3,22 @@ package com.example.demo.activity
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.webkit.WebSettingsCompat
 import androidx.webkit.WebSettingsCompat.FORCE_DARK_OFF
 import androidx.webkit.WebSettingsCompat.FORCE_DARK_ON
 import com.example.demo.BuildConfig
 import com.example.demo.databinding.ActivityWebviewBinding
+import com.example.demo.databinding.FragmentWebviewBinding
+import com.example.demo.fragment.base.BaseFragment
 import com.example.demo.util.ThemeType
 import com.example.demo.util.ThemeUtil
 import timber.log.Timber
@@ -26,6 +31,9 @@ import timber.log.Timber
 class WebViewActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityWebviewBinding
+    private val pagerAdapter: ViewPagerAdapter by lazy {
+        ViewPagerAdapter(this)
+    }
 
     @SuppressLint("RequiresFeature")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,19 +42,56 @@ class WebViewActivity : AppCompatActivity() {
         binding = ActivityWebviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            //Deprecated
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            window.insetsController?.hide(WindowInsets.Type.statusBars())
+//        } else {
+//            //Deprecated
+//            window.setFlags(
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN
+//            )
+//        }
 
         // 상단에 상태 표시줄이 있는 전체 화면 활동 만들기
-        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
+
+        //window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN)
+
+        binding.vpSample.adapter = pagerAdapter
+    }
+}
+
+
+internal class ViewPagerAdapter(
+    activity: AppCompatActivity
+) : FragmentStateAdapter(activity) {
+
+
+    override fun getItemCount(): Int {
+        return FRAGMENT_COUNT
+    }
+
+    override fun createFragment(position: Int): Fragment {
+        return if (position == 0) {
+            WebViewFragment.newInstance()
+        } else {
+            WebViewFragment.newInstance()
+        }
+    }
+
+    companion object {
+        private const val FRAGMENT_COUNT = 1
+    }
+
+}
+
+internal class WebViewFragment :
+    BaseFragment<FragmentWebviewBinding>(FragmentWebviewBinding::inflate) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.wvTest.settings.apply {
             javaScriptEnabled = true
@@ -74,5 +119,9 @@ class WebViewActivity : AppCompatActivity() {
         binding.btnDark.setOnClickListener {
             ThemeUtil.applyTheme(ThemeType.DARK_MODE)
         }
+    }
+
+    companion object {
+        fun newInstance(): WebViewFragment = WebViewFragment()
     }
 }
