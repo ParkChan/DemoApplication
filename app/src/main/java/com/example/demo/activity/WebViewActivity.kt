@@ -25,8 +25,9 @@ import timber.log.Timber
 
 /**
  * chrome://inspect를 통한 웹뷰 디버깅 테스트
- *
  * [웹뷰 다크테마 테스트](https://developer.android.com/guide/webapps/dark-theme)
+ * 웹뷰 입력상자 > 키보드 올라왔을시 화면 리사이즈 테스트
+ *
  */
 class WebViewActivity : AppCompatActivity() {
 
@@ -96,6 +97,7 @@ internal class WebViewFragment :
             }
         }
 
+        // 웹뷰 디버깅을 위한 설정
         WebView.setWebContentsDebuggingEnabled(BuildConfig.DEBUG)
 
         binding.wvTest.webViewClient = WebViewClient()
