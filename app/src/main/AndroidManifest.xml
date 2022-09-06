@@ -29,11 +29,12 @@
 
         <activity
             android:name="com.example.demo.activity.WebViewActivity"
-            android:theme="@style/Theme.DemoApplication.NoActionBar"
+            android:theme="@style/Theme.DemoApplication.FullScreen"
             android:windowSoftInputMode="adjustResize"
             android:windowTranslucentStatus="true"
             android:windowTranslucentNavigation="true"
             />
+
         <activity android:name="com.example.demo.activity.PopupwindowActivity" />
 
     </application>

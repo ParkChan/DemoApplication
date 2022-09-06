@@ -42,28 +42,21 @@ class WebViewActivity : AppCompatActivity() {
         binding = ActivityWebviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-//            window.insetsController?.hide(WindowInsets.Type.statusBars())
-//        } else {
-//            //Deprecated
-//            window.setFlags(
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN
-//            )
-//        }
+        binding.vpSample.adapter = pagerAdapter
+        //layoutNoLimits()
+    }
 
-        // 상단에 상태 표시줄이 있는 전체 화면 활동 만들기
+    /**
+     * 상단에 상태 표시줄이 있는 전체 화면 활동 만들기
+     * 해당 코드 사용시 adjustResize 동작이 안되는것으로 확인됨
+     */
+    private fun layoutNoLimits() {
         window.setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
-
-        //window.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN)
-
-        binding.vpSample.adapter = pagerAdapter
     }
 }
-
 
 internal class ViewPagerAdapter(
     activity: AppCompatActivity
@@ -75,11 +68,7 @@ internal class ViewPagerAdapter(
     }
 
     override fun createFragment(position: Int): Fragment {
-        return if (position == 0) {
-            WebViewFragment.newInstance()
-        } else {
-            WebViewFragment.newInstance()
-        }
+        return WebViewFragment.newInstance()
     }
 
     companion object {
@@ -111,7 +100,9 @@ internal class WebViewFragment :
 
         binding.wvTest.webViewClient = WebViewClient()
         binding.wvTest.webChromeClient = WebChromeClient()
-        binding.wvTest.loadUrl("https://m.twitter.com/bitcoin")
+
+        val webUrlLocal = "file:///android_asset/index.html"
+        binding.wvTest.loadUrl(webUrlLocal)
 
         binding.btnLight.setOnClickListener {
             ThemeUtil.applyTheme(ThemeType.LIGHT_MODE)

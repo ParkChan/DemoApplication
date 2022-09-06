@@ -11,15 +11,19 @@
         <item name="colorOnSecondary">@color/black</item>
 
         <!-- Status bar color. -->
-<!--        <item name="android:statusBarColor">@color/gray</item>-->
+        <!--        <item name="android:statusBarColor">@color/gray</item>-->
         <!-- Customize your theme here. -->
-<!--        <item name="android:navigationBarColor">@color/gray</item>-->
+        <!--        <item name="android:navigationBarColor">@color/gray</item>-->
 
     </style>
 
     <style name="Theme.DemoApplication.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.DemoApplication.FullScreen">
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="Theme.DemoApplication.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
