@@ -11,6 +11,7 @@
             android:id="@+id/rv_sample"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layoutAnimation="@anim/layout_animation_fall_down"
             app:dividerColor="@{@color/gray}"
             app:dividerHeight="@{@dimen/recycler_view_divider_height}"
             app:dividerPadding="@{@dimen/recycler_view_divider_height}"
