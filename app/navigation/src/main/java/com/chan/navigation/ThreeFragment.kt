@@ -30,24 +30,12 @@ class ThreeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentThreeBinding.inflate(layoutInflater)
-        binding.btnLight.setOnClickListener {
-            ThemeUtil.applyTheme(ThemeType.LIGHT_MODE)
-        }
-        binding.btnDark.setOnClickListener {
-            ThemeUtil.applyTheme(ThemeType.DARK_MODE)
-        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.testLiveData.collect {
-                    Timber.d( "onViewCreated Three")
-                }
-            }
-        }
+        Timber.d( "onViewCreated: Three")
     }
 
     override fun onPause() {
