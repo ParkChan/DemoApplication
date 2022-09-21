@@ -1,15 +1,10 @@
 package com.example.demo.activity
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.WindowInsets
 import android.view.WindowManager
-import android.webkit.JavascriptInterface
-import android.webkit.WebChromeClient
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -24,6 +19,7 @@ import com.example.demo.fragment.base.BaseFragment
 import com.example.demo.util.ThemeType
 import com.example.demo.util.ThemeUtil
 import timber.log.Timber
+
 
 /**
  * chrome://inspect를 통한 웹뷰 디버깅 테스트
@@ -112,8 +108,15 @@ internal class WebViewFragment :
         binding.btnLight.setOnClickListener {
             ThemeUtil.applyTheme(ThemeType.LIGHT_MODE)
         }
+
         binding.btnDark.setOnClickListener {
             ThemeUtil.applyTheme(ThemeType.DARK_MODE)
+        }
+
+        binding.btnScriptCall.setOnClickListener {
+            binding.wvTest.evaluateJavascript(
+                "window.DemoApplication.showToast('ParkChan')", null
+            )
         }
     }
 
@@ -124,7 +127,6 @@ internal class WebViewFragment :
         fun showToast(toast: String) {
             Toast.makeText(context, toast, Toast.LENGTH_SHORT).show()
         }
-
     }
 
     companion object {
