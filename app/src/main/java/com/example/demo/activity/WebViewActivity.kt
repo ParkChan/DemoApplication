@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.webkit.JavascriptInterface
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -102,9 +104,10 @@ internal class WebViewFragment :
 
         binding.wvTest.webViewClient = WebViewClient()
         binding.wvTest.webChromeClient = WebChromeClient()
+        binding.wvTest.addJavascriptInterface(WebAppInterface(), JavaScriptInterfaceName)
 
-        val webUrlLocal = "file:///android_asset/index.html"
-        binding.wvTest.loadUrl(webUrlLocal)
+
+        binding.wvTest.loadUrl(WebUrlLocal)
 
         binding.btnLight.setOnClickListener {
             ThemeUtil.applyTheme(ThemeType.LIGHT_MODE)
@@ -114,7 +117,19 @@ internal class WebViewFragment :
         }
     }
 
+    inner class WebAppInterface {
+
+        //Script 전달 받기 테스트
+        @JavascriptInterface
+        fun showToast(toast: String) {
+            Toast.makeText(context, toast, Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
     companion object {
+        private const val JavaScriptInterfaceName: String = "DemoApplication"
+        private const val WebUrlLocal = "file:///android_asset/index.html"
         fun newInstance(): WebViewFragment = WebViewFragment()
     }
 }

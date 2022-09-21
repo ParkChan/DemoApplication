@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+</head>
+<body>
+<p>
+    로딩이 완료된 웹뷰 입니다.
+</p>
+<input type="button" value="loadUrl 대신 evaluateJavascript 을 사용하여 리턴값 사용하기" onClick="showAndroidToast('Hello Black Jin World!')"/>
+<script type="text/javascript">
+    function showAndroidToast(toast) {
+        DemoApplication.showToast(toast);
+    }
+</script>
+
 <form>
   <input type="checkbox" name="vehicle1" value="1"> I have a 1<br>
   <input type="checkbox" name="vehicle2" value="2"> I have a 2<br>
@@ -29,4 +46,8 @@
   <input type="text" name="username"><br>
   User password:<br>
   <input type="password" name="psw">
+
+
 </form>
+</body>
+</html>
