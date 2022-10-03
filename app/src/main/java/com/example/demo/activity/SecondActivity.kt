@@ -12,18 +12,43 @@ class SecondActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySecondBinding
 
+    override fun onRestart() {
+        super.onRestart()
+        Timber.d("lifecycle Test >>> SubActivity onRestart")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Timber.d(">>> SubActivity onCreate")
+        Timber.d("lifecycle Test >>> SubActivity onCreate")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Timber.d("lifecycle Test >>> SubActivity onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.d("lifecycle Test >>> SubActivity onResume")
     }
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        Timber.d(">>> SubActivity onNewIntent")
+        Timber.d("lifecycle Test >>> SubActivity onNewIntent")
         Toast.makeText(this, "onNewIntent", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Timber.d("lifecycle Test >>> SubActivity onPause")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Timber.d("lifecycle Test >>> SubActivity onDestroy")
     }
 
     override fun onBackPressed() {
