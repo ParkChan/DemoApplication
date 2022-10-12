@@ -1,18 +1,16 @@
-package com.chan.navigation
+package com.example.demo.viewpager2
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.chan.navigation.databinding.FragmentOneBinding
+import com.example.demo.databinding.FragmentOneBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -28,16 +26,17 @@ class OneFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOneBinding.inflate(layoutInflater)
+        Timber.d("CHAN >>> lifecycle is onCreateView One")
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Timber.d("CHAN >>> lifecycle is onViewCreated One")
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.testLiveData.collect {
-                    Timber.d("CHAN >>> onViewCreated One")
+
                 }
             }
         }
@@ -45,35 +44,34 @@ class OneFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        Log.d("CHAN >>>", "onPause: One")
+        Timber.d("CHAN >>> lifecycle is onPause One")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Log.d("CHAN >>>", "onSaveInstanceState: One")
+        Timber.d("CHAN >>> lifecycle is onSaveInstanceState One")
     }
 
     override fun onStop() {
         super.onStop()
-        Log.d("CHAN >>>", "onStop: One")
+        Timber.d("CHAN >>> lifecycle is onStop One")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.d("CHAN >>>", "onDestroyView: One")
+        Timber.d("CHAN >>> lifecycle is onDestroyView One")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("CHAN >>>", "onDestroy: One")
+        Timber.d("CHAN >>> lifecycle is onDestroy One")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Log.d("CHAN >>>", "onDetach: One")
+        Timber.d("CHAN >>> lifecycle is onDetach One")
     }
 
     companion object {
-        val TAG = OneFragment::class.java.simpleName.toString()
     }
 }

@@ -1,8 +1,6 @@
-package com.chan.navigation
-
+package com.example.demo.viewpager2
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,17 +9,14 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.chan.navigation.databinding.FragmentThreeBinding
+import com.example.demo.databinding.FragmentTwoBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-/**
- * 라이트 | 다크모드 테스트
- */
-class ThreeFragment : Fragment() {
+class TwoFragment : Fragment() {
 
-    private lateinit var binding: FragmentThreeBinding
+    private lateinit var binding: FragmentTwoBinding
     private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -29,46 +24,53 @@ class ThreeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentThreeBinding.inflate(layoutInflater)
+        binding = FragmentTwoBinding.inflate(layoutInflater)
+        Timber.d("CHAN >>> lifecycle is onCreateView Two")
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d( "onViewCreated: Three")
+        Timber.d("CHAN >>> lifecycle is onViewCreated Two")
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.testLiveData.collect {
+
+                }
+            }
+        }
     }
 
     override fun onPause() {
         super.onPause()
-        Timber.d( "onPause: Three")
+        Timber.d("CHAN >>> lifecycle is onPause Two")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Timber.d( "onSaveInstanceState: Three")
+        Timber.d("CHAN >>> lifecycle is onSaveInstanceState Two")
     }
 
     override fun onStop() {
         super.onStop()
-        Timber.d("onStop: Three")
+        Timber.d("CHAN >>> lifecycle is onStop Two")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Timber.d("onDestroyView: Three")
+        Timber.d("CHAN >>> lifecycle is onDestroyView Two")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Timber.d("onDestroy: Three")
+        Timber.d("CHAN >>> lifecycle is onDestroy Two")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Timber.d( "onDetach: Three")
+        Timber.d("CHAN >>> lifecycle is onDetach Two")
     }
 
     companion object {
-        val TAG = ThreeFragment::class.java.simpleName.toString()
     }
 }

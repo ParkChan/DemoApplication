@@ -1,4 +1,4 @@
-package com.chan.navigation
+package com.example.demo.viewpager2
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

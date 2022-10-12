@@ -1,7 +1,6 @@
-package com.chan.navigation
+package com.example.demo.viewpager2
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.chan.navigation.databinding.FragmentFourBinding
+import com.example.demo.databinding.FragmentFourBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -26,16 +25,17 @@ class FourFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentFourBinding.inflate(layoutInflater)
+        Timber.d("CHAN >>> lifecycle is onCreateView Four")
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        Timber.d("CHAN >>> lifecycle is onViewCreated Four")
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.testLiveData.collect {
-                    Timber.d("onViewCreated Four")
+
                 }
             }
         }
@@ -43,35 +43,34 @@ class FourFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        Timber.d("onPause: Four")
+        Timber.d("CHAN >>> lifecycle is onPause Four")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Timber.d("onSaveInstanceState: Four")
+        Timber.d("CHAN >>> lifecycle is onSaveInstanceState Four")
     }
 
     override fun onStop() {
         super.onStop()
-        Timber.d( "onStop: Four")
+        Timber.d("CHAN >>> lifecycle is onStop Four")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Timber.d( "onDestroyView: Four")
+        Timber.d("CHAN >>> lifecycle is onDestroyView Four")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Timber.d("onDestroy: Four")
+        Timber.d("CHAN >>> lifecycle is onDestroy Four")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Timber.d("onDetach: Four")
+        Timber.d("CHAN >>> lifecycle is onDetach Four")
     }
 
     companion object {
-        val TAG = FourFragment::class.java.simpleName.toString()
     }
 }

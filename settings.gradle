@@ -14,4 +14,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "DemoApplication"
 include ':app'
-include ':app:navigation'
