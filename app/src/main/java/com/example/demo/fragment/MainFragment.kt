@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.chan.navigation.TabMenuMainActivity
 import com.example.demo.R
 import com.example.demo.activity.ItemTouchHelperActivity
 import com.example.demo.activity.PopupwindowActivity
 import com.example.demo.activity.WebViewActivity
 import com.example.demo.databinding.FragmentMainBinding
+import com.example.demo.viewpager2.ViewPager2TestActivity
 
 /**
  * 테스트 항목들을 추가하는 메인 화면
@@ -79,7 +79,7 @@ class MainFragment : Fragment() {
             startActivity(
                 Intent(
                     context,
-                    TabMenuMainActivity::class.java
+                    ViewPager2TestActivity::class.java
                 ).apply { flags = Intent.FLAG_ACTIVITY_SINGLE_TOP })
         }
     }

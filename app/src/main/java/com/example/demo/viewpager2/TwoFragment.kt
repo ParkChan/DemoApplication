@@ -25,17 +25,17 @@ class TwoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTwoBinding.inflate(layoutInflater)
-        Timber.d("CHAN >>> lifecycle is onCreateView Two")
+        Timber.d("CHAN >>> lifecycle is onCreateView")
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("CHAN >>> lifecycle is onViewCreated Two")
+        Timber.d("CHAN >>> lifecycle is onViewCreated")
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.testLiveData.collect {
-
+                viewModel.systemEvent.collect {
+                    Timber.d("CHAN >>> systemEvent is $it")
                 }
             }
         }
@@ -43,34 +43,35 @@ class TwoFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        Timber.d("CHAN >>> lifecycle is onPause Two")
+        Timber.d("CHAN >>> lifecycle is onPause")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Timber.d("CHAN >>> lifecycle is onSaveInstanceState Two")
+        Timber.d("CHAN >>> lifecycle is onSaveInstanceState")
     }
 
     override fun onStop() {
         super.onStop()
-        Timber.d("CHAN >>> lifecycle is onStop Two")
+        Timber.d("CHAN >>> lifecycle is onStop")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Timber.d("CHAN >>> lifecycle is onDestroyView Two")
+        Timber.d("CHAN >>> lifecycle is onDestroyView")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Timber.d("CHAN >>> lifecycle is onDestroy Two")
+        Timber.d("CHAN >>> lifecycle is onDestroy")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Timber.d("CHAN >>> lifecycle is onDetach Two")
+        Timber.d("CHAN >>> lifecycle is onDetach")
     }
 
     companion object {
+        fun newInstance(): TwoFragment = TwoFragment()
     }
 }

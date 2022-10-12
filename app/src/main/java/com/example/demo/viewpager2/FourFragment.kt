@@ -34,8 +34,8 @@ class FourFragment : Fragment() {
         Timber.d("CHAN >>> lifecycle is onViewCreated Four")
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.testLiveData.collect {
-
+                viewModel.systemEvent.collect {
+                    Timber.d("CHAN >>> systemEvent is $it")
                 }
             }
         }
@@ -72,5 +72,6 @@ class FourFragment : Fragment() {
     }
 
     companion object {
+        fun newInstance(): FourFragment = FourFragment()
     }
 }

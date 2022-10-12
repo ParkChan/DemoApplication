@@ -36,6 +36,8 @@
             />
 
         <activity android:name="com.example.demo.activity.PopupwindowActivity" />
+        <activity android:name="com.example.demo.viewpager2.ViewPager2TestActivity" />
+
 
     </application>
 
