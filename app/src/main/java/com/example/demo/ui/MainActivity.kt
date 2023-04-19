@@ -18,7 +18,12 @@ class MainActivity : AppCompatActivity() {
 //        Timber.d("lifecycle test >>> MainActivity lifeCycle is onCreate")
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        binding.lifecycleOwner = this
         setContentView(binding.root)
+
+
+        viewModel.start()
+
         Timber.d("lifecycle Test >>> MainActivity onCreate")
         //emit 시작
 //        MainScope().launch {

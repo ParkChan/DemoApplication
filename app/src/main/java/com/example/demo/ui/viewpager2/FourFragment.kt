@@ -25,17 +25,17 @@ class FourFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentFourBinding.inflate(layoutInflater)
-        Timber.d("CHAN >>> lifecycle is onCreateView Four")
+        Timber.d("lifecycle is onCreateView Four")
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("CHAN >>> lifecycle is onViewCreated Four")
+        Timber.d("lifecycle is onViewCreated Four")
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.systemEvent.collect {
-                    Timber.d("CHAN >>> systemEvent is $it")
+                    Timber.d("systemEvent is $it")
                 }
             }
         }
@@ -43,32 +43,32 @@ class FourFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        Timber.d("CHAN >>> lifecycle is onPause Four")
+        Timber.d("lifecycle is onPause Four")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Timber.d("CHAN >>> lifecycle is onSaveInstanceState Four")
+        Timber.d("lifecycle is onSaveInstanceState Four")
     }
 
     override fun onStop() {
         super.onStop()
-        Timber.d("CHAN >>> lifecycle is onStop Four")
+        Timber.d("lifecycle is onStop Four")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Timber.d("CHAN >>> lifecycle is onDestroyView Four")
+        Timber.d("lifecycle is onDestroyView Four")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Timber.d("CHAN >>> lifecycle is onDestroy Four")
+        Timber.d("lifecycle is onDestroy Four")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Timber.d("CHAN >>> lifecycle is onDetach Four")
+        Timber.d("lifecycle is onDetach Four")
     }
 
     companion object {

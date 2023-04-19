@@ -26,17 +26,17 @@ class ThreeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentThreeBinding.inflate(layoutInflater)
-        Timber.d("CHAN >>> lifecycle is onCreateView")
+        Timber.d("lifecycle is onCreateView")
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Timber.d("CHAN >>> lifecycle is onViewCreated")
+        Timber.d("lifecycle is onViewCreated")
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.systemEvent.collect {
-                    Timber.d("CHAN >>> systemEvent is $it")
+                    Timber.d("systemEvent is $it")
                 }
             }
         }
@@ -44,32 +44,32 @@ class ThreeFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        Timber.d("CHAN >>> lifecycle is onPause")
+        Timber.d("lifecycle is onPause")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        Timber.d("CHAN >>> lifecycle is onSaveInstanceState")
+        Timber.d("lifecycle is onSaveInstanceState")
     }
 
     override fun onStop() {
         super.onStop()
-        Timber.d("CHAN >>> lifecycle is onStop")
+        Timber.d("lifecycle is onStop")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Timber.d("CHAN >>> lifecycle is onDestroyView")
+        Timber.d("lifecycle is onDestroyView")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Timber.d("CHAN >>> lifecycle is onDestroy")
+        Timber.d("lifecycle is onDestroy")
     }
 
     override fun onDetach() {
         super.onDetach()
-        Timber.d("CHAN >>> lifecycle is onDetach")
+        Timber.d("lifecycle is onDetach")
     }
 
     companion object {

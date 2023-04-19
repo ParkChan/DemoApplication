@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.demo.databinding.ActivityViewpager2TestBinding
+import com.example.demo.ui.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -16,6 +18,7 @@ import timber.log.Timber
 /**
  * [StateFlow 와 SharedFlow](https://myungpyo.medium.com/stateflow-%EC%99%80-sharedflow-32fdb49f9a32)
  */
+@AndroidEntryPoint
 class ViewPager2TestActivity : AppCompatActivity() {
 
     private val binding: ActivityViewpager2TestBinding by lazy {
@@ -23,7 +26,7 @@ class ViewPager2TestActivity : AppCompatActivity() {
             layoutInflater
         )
     }
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: com.example.demo.ui.MainViewModel by viewModels()
     private val pagerAdapter by lazy { SamplePagerAdapter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +35,8 @@ class ViewPager2TestActivity : AppCompatActivity() {
 
         setupBinding()
         setupPagerAdapter()
-        startSystemEvent()
+
+        viewModel.start()
     }
 
     private fun setupBinding() {
@@ -48,7 +52,7 @@ class ViewPager2TestActivity : AppCompatActivity() {
         count.forEach {
             CoroutineScope(Dispatchers.Main).launch {
                 delay(1500)
-                viewModel.reportSystemEvent(it)
+                //viewModel.reportSystemEvent(it)
             }
         }
     }
