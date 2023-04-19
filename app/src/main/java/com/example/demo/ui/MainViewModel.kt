@@ -2,7 +2,7 @@ package com.example.demo.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.demo.domain.repository.CountUseCase
+import com.example.demo.domain.repository.CountUseCaseImpl
 import com.facebook.stetho.common.LogUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -19,14 +19,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val useCase: CountUseCase
+    private val useCase: CountUseCaseImpl
 ) : ViewModel() {
 
     init {
-
+        Timber.d("CHAN >>> MainViewModel init")
     }
     fun start(){
-        Timber.d("CHAN >>> MainViewModel init")
+        Timber.d("CHAN >>> MainViewModel start")
         CoroutineScope(Dispatchers.IO).launch {
             useCase.startCount()
         }
