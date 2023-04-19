@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.example.demo.fragment.OneItemRecyclerAdapter.OnItemSelectListener" />
+            type="com.example.demo.ui.fragment.OneItemRecyclerAdapter.OnItemSelectListener" />
 
     </data>
 
@@ -25,6 +25,7 @@
             android:id="@+id/tv_test"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:text="@{sampleText}"
             android:background="@color/test_bg"
             android:gravity="center|left"
             android:onClick="@{() -> listener.onClickItem(sampleText)}"
@@ -32,7 +33,6 @@
             android:singleLine="true"
             android:textColor="@color/test_text_color"
             android:textSize="@{20}"
-            app:asyncText="@{sampleText}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

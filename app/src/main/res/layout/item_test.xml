@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.example.demo.fragment.dialog.SecondRecyclerAdapter.OnItemSelectListener" />
+            type="com.example.demo.ui.fragment.dialog.SecondRecyclerAdapter.OnItemSelectListener" />
 
     </data>
 
@@ -28,7 +28,7 @@
             android:background="@color/test_bg"
             android:gravity="center"
             android:textSize="@{20}"
-            app:asyncText="@{sampleText}"
+            android:text="@{sampleText}"
             android:textColor="@color/test_text_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

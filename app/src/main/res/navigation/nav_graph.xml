@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/MainFragment"
-        android:name="com.example.demo.fragment.MainFragment"
+        android:name="com.example.demo.ui.fragment.MainFragment"
         tools:layout="@layout/fragment_theme_test">
         <action
             android:id="@+id/action_MainFragment_to_ThemeTestFragment"
@@ -31,31 +31,31 @@
 
     <fragment
         android:id="@+id/ThemeTestFragment"
-        android:name="com.example.demo.fragment.theme.ThemeTestFragment"
+        android:name="com.example.demo.ui.fragment.theme.ThemeTestFragment"
         tools:layout="@layout/fragment_theme_test" />
     <fragment
         android:id="@+id/DialogPositionTestFragment"
-        android:name="com.example.demo.fragment.dialog.DialogPositionTestFragment"
+        android:name="com.example.demo.ui.fragment.dialog.DialogPositionTestFragment"
         tools:layout="@layout/fragment_dialog_position_test" />
 
     <fragment
         android:id="@+id/StartActivityTestFragment"
-        android:name="com.example.demo.fragment.StartActivityTestFragment"
+        android:name="com.example.demo.ui.fragment.StartActivityTestFragment"
         tools:layout="@layout/fragment_start_activity_test" />
 
     <fragment
         android:id="@+id/LiveDataTestFragment"
-        android:name="com.example.demo.fragment.LiveDataTestFragment"
+        android:name="com.example.demo.ui.fragment.LiveDataTestFragment"
         tools:layout="@layout/fragment_livedata_test" />
 
     <fragment
         android:id="@+id/OneItemAutoScrollFragment"
-        android:name="com.example.demo.fragment.OneItemAutoScrollFragment"
+        android:name="com.example.demo.ui.fragment.OneItemAutoScrollFragment"
         tools:layout="@layout/fragment_one_item_auto_scroll" />
 
     <fragment
         android:id="@+id/RecyclerLeftHoldScrollTestFragment"
-        android:name="com.example.demo.fragment.RecyclerLeftHoldScrollTestFragment"
+        android:name="com.example.demo.ui.fragment.RecyclerLeftHoldScrollTestFragment"
         tools:layout="@layout/fragment_recycler_left_hold_scroll" />
 
 
