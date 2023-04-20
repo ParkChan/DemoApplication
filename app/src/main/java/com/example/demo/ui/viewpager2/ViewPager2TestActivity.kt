@@ -12,6 +12,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -26,7 +28,7 @@ class ViewPager2TestActivity : AppCompatActivity() {
             layoutInflater
         )
     }
-    private val viewModel: com.example.demo.ui.MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
     private val pagerAdapter by lazy { SamplePagerAdapter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +38,7 @@ class ViewPager2TestActivity : AppCompatActivity() {
         setupBinding()
         setupPagerAdapter()
 
-        viewModel.start()
+        viewModel.start("CHAN >>> ViewPager2TestActivity")
     }
 
     private fun setupBinding() {

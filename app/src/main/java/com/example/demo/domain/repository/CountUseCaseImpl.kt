@@ -4,6 +4,7 @@ import com.example.demo.data.CountRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -12,23 +13,26 @@ import javax.inject.Inject
 
 class CountUseCaseImpl @Inject constructor(
     private val repository: CountRepository
-) {
-
-    val channel = Channel<Int>()
-    var sendData: Int = 0
+) : CountUseCase {
 
     init {
-        Timber.d("CHAN >>> init CountUseCase")
+        Timber.d("CHAN >>> CountUseCaseImpl init")
     }
 
+    override val countFlow = MutableStateFlow(0)
+    override var isActiveChannel: Boolean = false
 
-    suspend fun startCount() {
-        Timber.d("CHAN >>> init CountUseCase startCount")
+    override suspend fun startCount() {
 
-        for (i in 0..100) {
-            delay(800)
-            Timber.d("CHAN >>> CountUseCaseImpl startCount $i")
-            channel.send(i)
+        if (isActiveChannel.not()) {
+            isActiveChannel = true
+
+            for (i in 0..100) {
+                delay(800)
+                countFlow.value = i
+            }
+        }else{
+            Timber.d("CHAN >>> CountUseCaseImpl already startCount..")
         }
     }
 }

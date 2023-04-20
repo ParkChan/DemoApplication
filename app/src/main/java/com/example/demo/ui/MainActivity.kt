@@ -15,38 +15,15 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        Timber.d("lifecycle test >>> MainActivity lifeCycle is onCreate")
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
         setContentView(binding.root)
 
 
-        viewModel.start()
+        viewModel.start("MainActivity")
 
         Timber.d("lifecycle Test >>> MainActivity onCreate")
-        //emit 시작
-//        MainScope().launch {
-//            viewModel.startSendDataToStateFlow()
-//        }
-//
-//        MainScope().launch {
-//            viewModel.stateFlow.collect {
-//                Timber.d("Test CHAN >>> stateFlow #1: $it - ${Thread.currentThread().name}")
-//            }
-//            Timber.d("Test CHAN >>> State Collect End #1 - ${Thread.currentThread().name}")
-//        }
-
-//        viewModel.startSendDataToSharedFlow()
-//        //참조: https://developer.android.com/kotlin/flow/stateflow-and-sharedflow?hl=ko
-//        lifecycleScope.launch {
-//            repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                viewModel.sharedFlow.collect {
-//                    Timber.d("Test CHAN >>> sharedFlow #2: $it - ${Thread.currentThread().name}")
-//                }
-//                Timber.d("Test CHAN >>> State Collect End #2 - ${Thread.currentThread().name}")
-//            }
-//        }
     }
 
     override fun onRestart() {
