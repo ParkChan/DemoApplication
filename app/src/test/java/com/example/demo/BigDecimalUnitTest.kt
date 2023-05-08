@@ -133,21 +133,40 @@ class BigDecimalUnitTest {
 
     @Test
     fun `BigDecimal_소수점_처리_방식`() {
+        println("================================")
+        // 반올림(5이상 올림, 5미만 버림)
         // 소수점 첫 번째까지 표현, 두번째 자리에서 반올림
         // 12.4
-        println(BigDecimal.valueOf(12.35).setScale(1, RoundingMode.HALF_UP))
+        println("HALF_UP " + BigDecimal.valueOf(12.35).setScale(1, RoundingMode.HALF_UP))
+
+        // 반올림(6이상 올림 6미만 버림)
+        // 12.4
+        println("HALF_DOWN " + BigDecimal.valueOf(12.45).setScale(1, RoundingMode.HALF_DOWN))
+
+        // 12.6
+        println("HALF_DOWN " + BigDecimal.valueOf(12.56).setScale(1, RoundingMode.HALF_DOWN))
+
+        // 반올림(반올림 자리의 값이 짝수면 HALF_DOWN, 홀수면 HALF_UP)
+        // 12.4 HALF_DOWN
+        println("HALF_EVEN " + BigDecimal.valueOf(12.45).setScale(1, RoundingMode.HALF_EVEN))
+
+        // 12.5 HALF_DOWN
+        println("HALF_EVEN " + BigDecimal.valueOf(12.46).setScale(1, RoundingMode.HALF_EVEN))
+
+        // 12.6 HALF_UP
+        println("HALF_EVEN " + BigDecimal.valueOf(12.56).setScale(1, RoundingMode.HALF_EVEN))
 
         // 소수점 이하 모두 제거하고 올림
         // 13
-        println(BigDecimal.valueOf(12.34).setScale(0, RoundingMode.CEILING))
+        println("CEILING " + BigDecimal.valueOf(12.34).setScale(0, RoundingMode.CEILING))
 
         // 음수인 경우는 특정 자릿수 이하 제거
         // -12.3
-        println(BigDecimal.valueOf(-12.34).setScale(1, RoundingMode.CEILING))
+        println("CEILING " + BigDecimal.valueOf(-12.34).setScale(1, RoundingMode.CEILING))
 
         // 특정 자릿수 이하 버림
         // 12.3
-        println(BigDecimal("12.37").setScale(1, RoundingMode.FLOOR))
+        println("FLOOR " + BigDecimal("12.37").setScale(1, RoundingMode.FLOOR))
 
     }
 }
