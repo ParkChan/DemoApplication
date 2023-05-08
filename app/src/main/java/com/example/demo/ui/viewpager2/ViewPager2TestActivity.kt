@@ -24,9 +24,7 @@ import timber.log.Timber
 class ViewPager2TestActivity : AppCompatActivity() {
 
     private val binding: ActivityViewpager2TestBinding by lazy {
-        ActivityViewpager2TestBinding.inflate(
-            layoutInflater
-        )
+        ActivityViewpager2TestBinding.inflate(layoutInflater)
     }
     private val viewModel: MainViewModel by viewModels()
     private val pagerAdapter by lazy { SamplePagerAdapter(this) }
