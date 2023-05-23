@@ -84,4 +84,22 @@ class CoroutineCancelUnitTest {
         println("Job canceled")
     }
 
+    @Test
+    fun `코루틴 취소 테스트3 사람들이 자주하는 실수`() = runBlocking {
+        val job = launch {
+            try {
+                delay(500L)
+            } catch (e: Exception) {
+                //해결방법
+//                if (e is CancellationException) {
+//                    throw e
+//                }
+                e.printStackTrace()
+            }
+            //수행됨
+            println("Coroutine 1 finished")
+        }
+        delay(300L)
+        job.cancel()
+    }
 }
