@@ -102,4 +102,22 @@ class CoroutineCancelUnitTest {
         delay(300L)
         job.cancel()
     }
+
+    @Test
+    fun `코루틴 예외 전파 테스트`() = runBlocking {
+
+        val job1= CoroutineScope(Dispatchers.IO).launch {
+            childException("1번")
+        }
+
+        val job2= CoroutineScope(Dispatchers.IO).launch {
+            childException("2번")
+        }
+        joinAll(job1,job2)
+    }
+    private suspend fun childException(scopeName: String) {
+        delay(10)
+        println("($scopeName) Hi I'm exception")
+        throw IllegalStateException("Not supported yet")
+    }
 }
