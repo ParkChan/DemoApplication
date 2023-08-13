@@ -23,11 +23,14 @@ class CountUseCaseImpl @Inject constructor(
             isActiveFlow = true
 
             for (i in 0..100) {
-                delay(800)
+                delay(COUNT_DELAY_TIME)
                 countFlow.value = i
             }
         } else {
             Timber.d("CHAN >>> CountUseCaseImpl already startCount..")
         }
+    }
+    companion object {
+        private const val COUNT_DELAY_TIME = 500L
     }
 }
