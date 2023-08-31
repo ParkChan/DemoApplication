@@ -2,10 +2,16 @@ package com.example.demo.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.demo.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import timber.log.Timber
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -20,8 +26,13 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         setContentView(binding.root)
 
+        lifecycleScope.launch {
+            viewModel.init { result ->
+                Toast.makeText(this@MainActivity, result.toString(), Toast.LENGTH_SHORT).show()
+            }
+            viewModel.start("MainActivity")
+        }
 
-        viewModel.start("MainActivity")
 
         Timber.d("lifecycle Test >>> MainActivity onCreate")
     }

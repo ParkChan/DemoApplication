@@ -31,6 +31,6 @@ class CountUseCaseImpl @Inject constructor(
         }
     }
     companion object {
-        private const val COUNT_DELAY_TIME = 500L
+        private const val COUNT_DELAY_TIME = 200L
     }
 }

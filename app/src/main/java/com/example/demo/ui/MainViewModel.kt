@@ -1,5 +1,7 @@
 package com.example.demo.ui
 
+import android.content.Context
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.demo.domain.repository.CountUseCase
@@ -17,12 +19,11 @@ class MainViewModel @Inject constructor(
 
     var job: Job? = null
     var from: String = ""
-    init {
-        Timber.d("CHAN >>> MainViewModel init")
+
+    fun init(result: (Int) -> Unit) {
         job = viewModelScope.launch {
-            useCase.countFlow.collect { number ->
-                PerformanceTestUtil.startTpsMonitoring()
-                Timber.d("CHAN >>> receiveAsFlow $from $number")
+            useCase.countFlow.collect { _ ->
+                PerformanceTestUtil.startTpsMonitoring { count -> result(count) }
             }
         }
     }

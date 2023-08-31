@@ -3,12 +3,14 @@ package com.example.demo.ui.util
 object PerformanceTestUtil {
     private var count = 0
     private var prevTimeMillis = System.currentTimeMillis()
-    fun startTpsMonitoring() {
+    fun startTpsMonitoring(result: (Int) -> Unit) {
         val currentTimeMillis = System.currentTimeMillis()
+
         if (currentTimeMillis - prevTimeMillis >= 1000) {
-            val tps = count.toDouble() / ((currentTimeMillis - prevTimeMillis) / 1000.0)
-            println("TPS: $tps")
-            println("TPS: Count $count")
+            //카운트만 세어볼거면 불필요한 작업
+//            val tps = count.toDouble() / ((currentTimeMillis - prevTimeMillis) / 1000.0)
+//            println("TPS: $tps")
+            result(count)
             count = 0
             prevTimeMillis = currentTimeMillis
         }
