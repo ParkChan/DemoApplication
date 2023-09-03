@@ -7,10 +7,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.demo.databinding.ActivityMainBinding
+import com.example.demo.ui.viewmodel.LogEventViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 @AndroidEntryPoint
@@ -18,21 +16,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val viewModel by viewModels<MainViewModel>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
         setContentView(binding.root)
-
-        lifecycleScope.launch {
-            viewModel.init { result ->
-                Toast.makeText(this@MainActivity, result.toString(), Toast.LENGTH_SHORT).show()
-            }
-            viewModel.start("MainActivity")
-        }
-
 
         Timber.d("lifecycle Test >>> MainActivity onCreate")
     }

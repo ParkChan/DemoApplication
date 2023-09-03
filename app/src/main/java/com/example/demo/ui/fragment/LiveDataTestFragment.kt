@@ -37,12 +37,15 @@ class LiveDataTestFragment : Fragment() {
             return
         }
         val scope = CoroutineScope(Dispatchers.Main)
+
         binding.btnSet.setOnClickListener {
             scope.launch {
-                observeCnt = 0
                 Toast.makeText(context, "곧 시작합니다.", Toast.LENGTH_SHORT).show()
-                number.value = 0
+                observeCnt = OBSERVE_DEFAULT_COUNT
+                number.value = NUMBER_DEFAULT_COUNT
+
                 delay(START_DELAY_TIME)
+
                 for (num: Int in 1..TEST_CNT) {
                     number.value = num
                 }
@@ -50,23 +53,27 @@ class LiveDataTestFragment : Fragment() {
         }
         binding.btnPost.setOnClickListener {
             scope.launch {
-                observeCnt = 0
                 Toast.makeText(context, "곧 시작합니다.", Toast.LENGTH_SHORT).show()
-                number.postValue(0)
+                observeCnt = OBSERVE_DEFAULT_COUNT
+                number.postValue(NUMBER_DEFAULT_COUNT)
+
                 delay(START_DELAY_TIME)
+
                 for (num: Int in 1..TEST_CNT) {
                     number.postValue(num)
                 }
             }
         }
-        number.observe(viewLifecycleOwner) {
 
+        number.observe(viewLifecycleOwner) {
             binding.tvNumber.text = it.toString()
             binding.tvObserveCnt.text = "observe cnt is ${observeCnt ++}"
         }
     }
     companion object {
         private const val START_DELAY_TIME = 500L
-        private const val TEST_CNT = 1000
+        private const val TEST_CNT = 100
+        private const val OBSERVE_DEFAULT_COUNT = 0
+        private const val NUMBER_DEFAULT_COUNT = 0
     }
 }

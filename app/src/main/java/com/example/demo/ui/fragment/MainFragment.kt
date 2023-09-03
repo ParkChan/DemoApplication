@@ -12,7 +12,7 @@ import com.example.demo.ui.activity.ItemTouchHelperActivity
 import com.example.demo.ui.activity.PopupwindowActivity
 import com.example.demo.ui.activity.WebViewActivity
 import com.example.demo.databinding.FragmentMainBinding
-import com.example.demo.ui.viewpager2.ViewPager2TestActivity
+import com.example.demo.ui.activity.ViewPager2TestActivity
 
 /**
  * 테스트 항목들을 추가하는 메인 화면

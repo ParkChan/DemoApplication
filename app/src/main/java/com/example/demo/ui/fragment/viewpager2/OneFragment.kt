@@ -1,4 +1,4 @@
-package com.example.demo.ui.viewpager2
+package com.example.demo.ui.fragment.viewpager2
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,22 +9,23 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.demo.databinding.FragmentTwoBinding
+import com.example.demo.databinding.FragmentOneBinding
+import com.example.demo.ui.viewmodel.ViewPagerViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class TwoFragment : Fragment() {
+class OneFragment : Fragment() {
 
-    private lateinit var binding: FragmentTwoBinding
-    private val viewModel: MainViewModel by activityViewModels()
+    private lateinit var binding: FragmentOneBinding
+    private val viewModel: ViewPagerViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentTwoBinding.inflate(layoutInflater)
+        binding = FragmentOneBinding.inflate(layoutInflater)
         Timber.d("lifecycle is onCreateView")
         return binding.root
     }
@@ -72,6 +73,6 @@ class TwoFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(): TwoFragment = TwoFragment()
+        fun newInstance(): OneFragment = OneFragment()
     }
 }

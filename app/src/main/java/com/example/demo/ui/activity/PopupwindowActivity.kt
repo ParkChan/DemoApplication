@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupWindow
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.R
@@ -16,12 +18,18 @@ import com.example.demo.databinding.ItemSpinnerBinding
 import com.example.demo.databinding.SpinnerPopupWindowBinding
 import com.example.demo.ui.util.DisplayUtils.dpToPx
 import com.example.demo.ui.util.doOnGlobalLayout
+import com.example.demo.ui.viewmodel.LogEventViewModel
+import com.facebook.stetho.common.LogUtil
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 /**
  * [참고 Blog](https://als2019.tistory.com/46)
  * PopupWindow 생성 및 리스트 아이템 가운데 정렬 표시
  */
+@AndroidEntryPoint
 class PopupwindowActivity : AppCompatActivity(),
     SecondRecyclerAdapter.OnItemSelectListener {
 
@@ -32,13 +40,25 @@ class PopupwindowActivity : AppCompatActivity(),
     private val secondRecyclerAdapter: SecondRecyclerAdapter by lazy {
         SecondRecyclerAdapter(this)
     }
+    private val viewModel by viewModels<LogEventViewModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityPopupWindowBinding.inflate(layoutInflater)
+        //binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         setContentView(binding.root)
 
+        lifecycleScope.launch {
+            viewModel.start()
+        }
+
+        viewModel.tps.observe(this) {
+            Timber.d("CHAN >>> ${it.toString()}")
+            //binding.tvTpsContent.text = it.toString()
+        }
 
         binding.btnSpinner.setOnClickListener {
 
@@ -85,6 +105,9 @@ class PopupwindowActivity : AppCompatActivity(),
     override fun onClickItem(text: String) {
         Toast.makeText(this, "리스트 아이템 선택 $text", Toast.LENGTH_SHORT).show()
     }
+
+
+
 }
 
 internal class SecondRecyclerAdapter(
