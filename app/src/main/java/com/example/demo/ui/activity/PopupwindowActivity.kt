@@ -3,6 +3,7 @@ package com.example.demo.ui.activity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupWindow
 import android.widget.Toast
@@ -17,12 +18,13 @@ import com.example.demo.databinding.ActivityPopupWindowBinding
 import com.example.demo.databinding.ItemSpinnerBinding
 import com.example.demo.databinding.SpinnerPopupWindowBinding
 import com.example.demo.ui.util.DisplayUtils.dpToPx
+import com.example.demo.ui.util.PerformanceTestUtil
 import com.example.demo.ui.util.doOnGlobalLayout
 import com.example.demo.ui.viewmodel.LogEventViewModel
-import com.facebook.stetho.common.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 
 /**
@@ -40,74 +42,68 @@ class PopupwindowActivity : AppCompatActivity(),
     private val secondRecyclerAdapter: SecondRecyclerAdapter by lazy {
         SecondRecyclerAdapter(this)
     }
-    private val viewModel by viewModels<LogEventViewModel>()
+    private val logEventViewModel by viewModels<LogEventViewModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityPopupWindowBinding.inflate(layoutInflater)
-        //binding.viewModel = viewModel
+        binding.logEventViewModel = logEventViewModel
         binding.lifecycleOwner = this
         setContentView(binding.root)
 
-        lifecycleScope.launch {
-            viewModel.start()
-        }
-
-        viewModel.tps.observe(this) {
-            Timber.d("CHAN >>> ${it.toString()}")
-            //binding.tvTpsContent.text = it.toString()
-        }
+        initViewModelObserve()
 
         binding.btnSpinner.setOnClickListener {
+            spinnerClickEvent(it)
+        }
+        logEventViewModel.startTestEventCount()
+    }
+    private fun initViewModelObserve(){
+    }
+    private fun spinnerClickEvent(view: View){
+        val button = view as AppCompatButton
 
-            val button = it as AppCompatButton
+        //팝업이 열렸을때 버튼 아이콘 상태 변경
+        button.setCompoundDrawablesWithIntrinsicBounds(
+            0,
+            0,
+            R.drawable.expand_less,
+            0
+        )
 
-            //팝업이 열렸을때 버튼 아이콘 상태 변경
+        val binding = SpinnerPopupWindowBinding.inflate(layoutInflater)
+        binding.rvList.adapter = secondRecyclerAdapter
+        secondRecyclerAdapter.replaceItems(mockItems)
+
+        val popupWindow = PopupWindow(binding.root, 200.dpToPx.toInt(), 200.dpToPx.toInt())
+        popupWindow.contentView = binding.root
+        popupWindow.isOutsideTouchable = true           // 팝업 윈도우 바깥 영역 터치 허용
+        popupWindow.isFocusable = true                  // 포커스를 가질 수 있도록 허용
+        popupWindow.showAsDropDown(button)                  // DropDown 타입으로 팝업 생성
+
+        binding.rvList.doOnGlobalLayout {
+            val layoutManager = binding.rvList.layoutManager as LinearLayoutManager
+            layoutManager.scrollToPositionWithOffset(
+                mockItems.count() / 2,
+                layoutManager.height / 2
+            )
+        }
+
+        //팝업이 닫혔을때 버튼 아이콘 상태 변경
+        popupWindow.setOnDismissListener {
             button.setCompoundDrawablesWithIntrinsicBounds(
                 0,
                 0,
-                R.drawable.expand_less,
+                R.drawable.expand_more,
                 0
             )
-
-            val binding = SpinnerPopupWindowBinding.inflate(layoutInflater)
-            binding.rvList.adapter = secondRecyclerAdapter
-            secondRecyclerAdapter.replaceItems(mockItems)
-
-            val popupWindow = PopupWindow(binding.root, 200.dpToPx.toInt(), 200.dpToPx.toInt())
-            popupWindow.contentView = binding.root
-            popupWindow.isOutsideTouchable = true           // 팝업 윈도우 바깥 영역 터치 허용
-            popupWindow.isFocusable = true                  // 포커스를 가질 수 있도록 허용
-            popupWindow.showAsDropDown(it)                  // DropDown 타입으로 팝업 생성
-
-            binding.rvList.doOnGlobalLayout {
-                val layoutManager = binding.rvList.layoutManager as LinearLayoutManager
-                layoutManager.scrollToPositionWithOffset(
-                    mockItems.count() / 2,
-                    layoutManager.height / 2
-                )
-            }
-
-            //팝업이 닫혔을때 버튼 아이콘 상태 변경
-            popupWindow.setOnDismissListener {
-                button.setCompoundDrawablesWithIntrinsicBounds(
-                    0,
-                    0,
-                    R.drawable.expand_more,
-                    0
-                )
-            }
         }
     }
-
     override fun onClickItem(text: String) {
         Toast.makeText(this, "리스트 아이템 선택 $text", Toast.LENGTH_SHORT).show()
     }
-
-
-
 }
 
 internal class SecondRecyclerAdapter(

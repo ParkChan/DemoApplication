@@ -8,54 +8,53 @@ import com.example.demo.ui.util.PerformanceTestUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
 import timber.log.Timber
+import java.text.SimpleDateFormat
 import javax.inject.Inject
 
 @HiltViewModel
 class LogEventViewModel @Inject constructor() : ViewModel() {
 
-    private var job: Job? = null
-    private val countFlow = MutableStateFlow(0)
-    private var isActiveFlow: Boolean = false
+    private var startEventJob: Job? = null
 
-    private val _tps = MutableLiveData<Int>()
-    val tps: LiveData<Int> = _tps
+    private val _testFlow = MutableStateFlow(0)
+    val testFlow = _testFlow.asStateFlow()
 
-    fun start() {
-        //job?.cancel()
+    private val _eventCnt = MutableLiveData<String>()
+    val eventCnt: LiveData<String> = _eventCnt
+
+    fun startTestEventCount() {
+        startEventJob?.cancel()
+        startEventJob = viewModelScope.launch {
+            startTestEvent()
+        }
+
         viewModelScope.launch {
-            startCount()
-            countFlow.collect { number ->
-                Timber.d("CHAN >>> $number")
-                PerformanceTestUtil.startTpsMonitoring { count ->
-                    _tps.postValue(count)
-                }
+            testFlow.collect {
+                PerformanceTestUtil.sendEvent({ result ->
+                    _eventCnt.value = result
+                })
             }
         }
     }
-    private fun startCount() {
-
-        if (isActiveFlow.not()) {
-            isActiveFlow = true
-
-            CoroutineScope(Dispatchers.IO).launch {
-                for (i in 0..100) {
-                    delay(COUNT_DELAY_TIME)
-                    countFlow.value = i
-                }
+    private suspend fun startTestEvent() {
+        withContext(Dispatchers.IO){
+            for (count: Int in 0..100) {
+                delay(COUNT_DELAY_TIME_10)
+                _testFlow.emit(count)
             }
-
-        } else {
-            Timber.d("CHAN >>> CountUseCaseImpl already startCount..")
         }
     }
 
     override fun onCleared() {
+        startEventJob?.cancel()
         PerformanceTestUtil.initTpsMonitoring()
         super.onCleared()
     }
+
     companion object {
-        private const val COUNT_DELAY_TIME = 200L
+        private const val COUNT_DELAY_TIME_10 = 200L
     }
 }
