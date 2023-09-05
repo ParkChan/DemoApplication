@@ -1,6 +1,6 @@
 package com.example.demo
 
-import com.example.demo.ui.fragment.common.model.Event
+import com.example.demo.ui.util.Event
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before

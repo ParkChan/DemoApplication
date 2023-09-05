@@ -1,4 +1,4 @@
-package com.example.demo.ui.fragment.common.model
+package com.example.demo.ui.util
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
