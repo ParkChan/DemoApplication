@@ -11,6 +11,7 @@ import com.example.demo.ui.fragment.viewpager2.OneFragment
 import com.example.demo.ui.fragment.viewpager2.ThreeFragment
 import com.example.demo.ui.fragment.viewpager2.TwoFragment
 import com.example.demo.ui.viewmodel.ViewPagerViewModel
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,7 +34,7 @@ class ViewPager2TestActivity : AppCompatActivity() {
 
         setupBinding()
         setupPagerAdapter()
-
+        setupTabLayout()
     }
 
     private fun setupBinding() {
@@ -42,6 +43,14 @@ class ViewPager2TestActivity : AppCompatActivity() {
 
     private fun setupPagerAdapter() {
         binding.vpSample.adapter = pagerAdapter
+    }
+
+    private fun setupTabLayout() {
+        val tabLayout = binding.tabLayout
+        TabLayoutMediator(tabLayout, binding.vpSample) { tab, position ->
+            tab.text = "OBJECT ${(position + 1)}"
+        }.attach()
+
     }
 
     private fun startSystemEvent() {
