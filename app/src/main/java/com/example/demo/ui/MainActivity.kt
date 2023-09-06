@@ -2,15 +2,11 @@ package com.example.demo.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.example.demo.databinding.ActivityMainBinding
-import com.example.demo.ui.viewmodel.LogEventViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 import timber.log.Timber
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
