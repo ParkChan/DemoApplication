@@ -39,15 +39,26 @@
             app:layout_constraintWidth_percent="0.5" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_script_call"
+            android:id="@+id/btn_script_call_1"
             android:layout_width="0dp"
-            android:layout_height="60dp"
+            android:layout_height="30dp"
             android:background="@color/test_bg"
-            android:text="loadUrl 대신 evaluateJavascript 을 사용하여 \n리턴값 받기"
+            android:text="스크립트에 인자를 전달하여 실행 하기"
             android:textColor="@color/test_text_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_light" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_script_call_2"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:background="@color/test_bg"
+            android:text="스크립트에 포함된 로컬스토리지를 삭제 하기"
+            android:textColor="@color/test_text_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_script_call_1" />
 
         <WebView
             android:id="@+id/wv_test"
@@ -56,7 +67,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_script_call" />
+            app:layout_constraintTop_toBottomOf="@id/btn_script_call_1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

@@ -113,12 +113,50 @@ internal class WebViewFragment :
             ThemeUtil.applyTheme(ThemeType.DARK_MODE)
         }
 
-        binding.btnScriptCall.setOnClickListener {
+        // 직접 Script Call 수행히는 예제
+        binding.btnScriptCall1.setOnClickListener {
             binding.wvTest.evaluateJavascript(
                 "window.DemoApplication.showToast('ParkChan')", null
             )
         }
+
+        // WebView -> localStorage를 삭제하는 예제
+        binding.btnScriptCall2.setOnClickListener {
+
+            val keyName = "examKey"
+
+            // 스크립트 함수를 정의하고 실행시켜서 삭제하는 예시
+            binding.wvTest.evaluateJavascript(
+                "onClearLocalStorage = function() { " +
+                        "const data = window.localStorage; " +
+                        "const localStorageKeys = Object.keys({ ...data }); " +
+                        "const examKeys = localStorageKeys.filter((key) => key.includes('$keyName') ); " +
+                        "examKeys.forEach((key) => { window.localStorage.removeItem(key); }); }; " +
+                        "onClearLocalStorage()",
+                null
+            )
+
+            // localStorage의 모든 키를 포함하는 JSON 문자열 가져오기
+            binding.wvTest.evaluateJavascript("JSON.stringify(Object.keys(window.localStorage));") { value ->
+                // todo
+            }
+
+            // value는 특정 키 값에 대한 localStorage의 키값 가져오기
+            binding.wvTest.evaluateJavascript("window.localStorage.getItem('$keyName');") {
+                    value ->
+                println(value)
+                // 삭제 처리
+                removeItemFromLocalStorage(binding.wvTest, value)
+            }
+
+        }
     }
+
+    // 한번에 하나의 키값에 포함되는 로컬스토리지 항목을 삭제
+    private fun removeItemFromLocalStorage(webView: WebView, key: String) {
+        webView.evaluateJavascript("window.localStorage.removeItem('$key');", null)
+    }
+
 
     inner class WebAppInterface {
 
