@@ -1,8 +1,10 @@
 package com.example.demo
 
+import com.example.demo.ui.util.toBigDecimalV1
 import org.junit.Test
 import java.math.BigDecimal
 import java.math.RoundingMode
+import java.text.DecimalFormat
 
 /**
  * [출처](https://webcache.googleusercontent.com/search?q=cache:zAqJzhOFb0cJ:https://madplay.github.io/post/the-need-for-bigdecimal-in-java+&cd=1&hl=ko&ct=clnk&gl=kr)
@@ -167,6 +169,54 @@ class BigDecimalUnitTest {
         // 특정 자릿수 이하 버림
         // 12.3
         println("FLOOR " + BigDecimal("12.37").setScale(1, RoundingMode.FLOOR))
+    }
 
+    @Test
+    fun `isFinite 를 사용하면 Infinity 와 NaN 을 모두 체크`() {
+
+        val min = Double.MIN_VALUE
+        val max = Double.MAX_VALUE
+        val positiveInfinity = Double.POSITIVE_INFINITY //양의 무한대 값을 유지하는 상수
+        val negativeInfinity = Double.NEGATIVE_INFINITY //음의 무한대 값을 유지하는 상수
+        val nan = Double.NaN
+
+        println("min : $min")
+        println("max : $max")
+        println("positiveInfinity : $positiveInfinity")
+        println("negativeInfinity : $negativeInfinity")
+        println("nan : $nan")
+
+        // 양의 무한대 예시
+        val positiveInfinityTest1 = max + max
+        println("positiveInfinityTest1 : $positiveInfinityTest1")
+
+        // 음의 무한대 예시
+        val negativeInfinityTest1 = -max -max
+        println("negativeInfinityTest1 : $negativeInfinityTest1")
+
+        // isNaN : Not a Number 예시
+        val nanResult1 = 0.0 / 0.0
+        val nanResult2 = Double.POSITIVE_INFINITY - Double.POSITIVE_INFINITY
+        val nanResult3 = Double.NEGATIVE_INFINITY + Double.POSITIVE_INFINITY
+
+
+        println("0.0 / 0.0 = $nanResult1")
+        println("Double.POSITIVE_INFINITY - Double.POSITIVE_INFINITY = $nanResult2")
+        println("Double.NEGATIVE_INFINITY + Double.POSITIVE_INFINITY = $nanResult3")
+
+        //그래서? isFinite 를 사용하면 유한한 숫자인지 체크할 수 있다. Infinity 와 NaN 을 And 조건으로 체크
+        println("유한한 숫자인가? Infinity isFinite ${positiveInfinityTest1.isFinite()} Nan isFinite : ${nanResult1.isFinite()}")
+
+        //toBigDecimalV1 확장함 수 사용
+        println("positiveInfinityTest1 값을 출력 합니다. ${positiveInfinityTest1.toBigDecimalV1()}")
+    }
+
+    @Test
+    fun `BigDecimal formatter 사용 예시`(){
+        val number = BigDecimal("1234567890.123456789")
+        val formatter = DecimalFormat("#,###.##")
+        val formattedNumber = formatter.format(number)
+
+        println("Formatted number: $formattedNumber")
     }
 }
