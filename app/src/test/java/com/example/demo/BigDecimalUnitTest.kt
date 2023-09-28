@@ -212,6 +212,15 @@ class BigDecimalUnitTest {
     }
 
     @Test
+    fun `무한한 수를 BigDecimal로 변환시`(){
+        //확장함수 구현을 통해 예외를 처리한 경우
+        val nanResult1 = Double.POSITIVE_INFINITY.toBigDecimalV1()
+//        val nanResult2 = Double.POSITIVE_INFINITY.toBigDecimal()
+        println("$nanResult1")
+//        println("예외!!!!! $nanResult2")
+    }
+
+    @Test
     fun `BigDecimal formatter 사용 예시`(){
         val number = BigDecimal("1234567890.123456789")
         val formatter = DecimalFormat("#,###.##")
