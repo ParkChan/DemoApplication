@@ -208,7 +208,7 @@ class BigDecimalUnitTest {
         println("유한한 숫자인가? Infinity isFinite ${positiveInfinityTest1.isFinite()}")
         println("유한한 숫자인가? Nan isFinite : ${nanResult1.isFinite()}")
 
-        //toBigDecimalV1 확장함 수 사용
+        //toBigDecimalV1 확장함수 사용
         println("positiveInfinityTest1 값을 출력 합니다. ${positiveInfinityTest1.toBigDecimalV1()}")
     }
 

@@ -1,0 +1,47 @@
+{
+  "store_info": [
+    {
+      "store_seq": 1,
+      "thumbnail": "https://source.unsplash.com/user/erondu/400x460",
+      "title": "카페당비비",
+      "distance": 30,
+      "address": "홍대입구역 9번 출구",
+      "save_percent": 7
+    },
+    {
+      "store_seq": 1,
+      "thumbnail": "https://source.unsplash.com/user/erondu/400x460",
+      "title": "카페당비비",
+      "distance": 30,
+      "address": "홍대입구역 9번 출구",
+      "save_percent": 7
+    },
+    {
+      "store_seq": 1,
+      "thumbnail": "https://source.unsplash.com/user/erondu/400x460",
+      "title": "카페당비비",
+      "distance": 30,
+      "address": "홍대입구역 9번 출구",
+      "save_percent": 7
+    },
+    {
+      "store_seq": 1,
+      "thumbnail": "https://source.unsplash.com/user/erondu/400x460",
+      "title": "카페당비비",
+      "distance": 30,
+      "address": "홍대입구역 9번 출구",
+      "save_percent": 7
+    }
+  ],
+  "getPager_info": {
+    "currentPage": 1,
+    "limit": 10,
+    "totalCount": 16,
+    "totalPage": 2
+  },
+  "imgPathReturn" : "https://image.goeat.co.kr/",
+  "stateCode" : 200,
+  "liveName" : "local",
+  "detailCode" : 200,
+  "pathReturn" : "/res/"
+}
