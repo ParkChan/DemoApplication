@@ -205,7 +205,8 @@ class BigDecimalUnitTest {
         println("Double.NEGATIVE_INFINITY + Double.POSITIVE_INFINITY = $nanResult3")
 
         //그래서? isFinite 를 사용하면 유한한 숫자인지 체크할 수 있다. Infinity 와 NaN 을 And 조건으로 체크
-        println("유한한 숫자인가? Infinity isFinite ${positiveInfinityTest1.isFinite()} Nan isFinite : ${nanResult1.isFinite()}")
+        println("유한한 숫자인가? Infinity isFinite ${positiveInfinityTest1.isFinite()}")
+        println("유한한 숫자인가? Nan isFinite : ${nanResult1.isFinite()}")
 
         //toBigDecimalV1 확장함 수 사용
         println("positiveInfinityTest1 값을 출력 합니다. ${positiveInfinityTest1.toBigDecimalV1()}")
