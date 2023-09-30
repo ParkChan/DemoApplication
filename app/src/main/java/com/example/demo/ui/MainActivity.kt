@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.demo.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import java.net.URI
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
