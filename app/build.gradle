@@ -96,5 +96,4 @@ dependencies {
 
     testImplementation "org.robolectric:robolectric:4.9.2"
 
-
 }

@@ -82,5 +82,12 @@ class MainFragment : Fragment() {
                     ViewPager2TestActivity::class.java
                 ).apply { flags = Intent.FLAG_ACTIVITY_SINGLE_TOP })
         }
+        binding.btnHttp.setOnClickListener{
+            startActivity(
+                Intent(
+                    context,
+                    ViewPager2TestActivity::class.java
+                ).apply { flags = Intent.FLAG_ACTIVITY_SINGLE_TOP })
+        }
     }
 }

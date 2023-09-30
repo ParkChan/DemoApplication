@@ -1,47 +1,40 @@
 {
-  "store_info": [
+  "bookmarkList": [
     {
-      "store_seq": 1,
+      "seq": 1,
       "thumbnail": "https://source.unsplash.com/user/erondu/400x460",
-      "title": "카페당비비",
-      "distance": 30,
-      "address": "홍대입구역 9번 출구",
-      "save_percent": 7
+      "title": "1번 북마크 입니다.",
+      "price": 123456789.123456789
     },
     {
-      "store_seq": 1,
+      "seq": 2,
       "thumbnail": "https://source.unsplash.com/user/erondu/400x460",
-      "title": "카페당비비",
-      "distance": 30,
-      "address": "홍대입구역 9번 출구",
-      "save_percent": 7
+      "title": "2번 북마크 입니다.",
+      "price": 123456789.123456789
     },
     {
-      "store_seq": 1,
+      "seq": 3,
       "thumbnail": "https://source.unsplash.com/user/erondu/400x460",
-      "title": "카페당비비",
-      "distance": 30,
-      "address": "홍대입구역 9번 출구",
-      "save_percent": 7
+      "title": "3번 북마크 입니다.",
+      "price": 123456789.123456789
     },
     {
-      "store_seq": 1,
+      "seq": 4,
       "thumbnail": "https://source.unsplash.com/user/erondu/400x460",
-      "title": "카페당비비",
-      "distance": 30,
-      "address": "홍대입구역 9번 출구",
-      "save_percent": 7
+      "title": "4번 북마크 입니다.",
+      "price": 123456789.123456789
+    },
+    {
+      "seq": 5,
+      "thumbnail": "https://source.unsplash.com/user/erondu/400x460",
+      "title": "5번 북마크 입니다.",
+      "price": 123456789.123456789
+    },
+    {
+      "seq": 6,
+      "thumbnail": "https://source.unsplash.com/user/erondu/400x460",
+      "title": "6번 북마크 입니다.",
+      "price": 123456789.123456789
     }
-  ],
-  "getPager_info": {
-    "currentPage": 1,
-    "limit": 10,
-    "totalCount": 16,
-    "totalPage": 2
-  },
-  "imgPathReturn" : "https://image.goeat.co.kr/",
-  "stateCode" : 200,
-  "liveName" : "local",
-  "detailCode" : 200,
-  "pathReturn" : "/res/"
+  ]
 }

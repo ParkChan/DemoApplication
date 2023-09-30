@@ -8,6 +8,9 @@ import timber.log.Timber
 
 @HiltAndroidApp
 class MyApplication : Application() {
+    init {
+        instance = this
+    }
     override fun onCreate() {
         super.onCreate()
 
