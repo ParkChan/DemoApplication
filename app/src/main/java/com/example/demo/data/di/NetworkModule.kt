@@ -2,6 +2,7 @@ package com.example.demo.data.di
 
 import com.example.demo.data.MockInterceptor
 import com.example.demo.data.source.TestService
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,6 +27,7 @@ class NetworkModule {
     ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(mockInterceptor)
+            .addNetworkInterceptor(StethoInterceptor())
             .build()
 
     @Provides
