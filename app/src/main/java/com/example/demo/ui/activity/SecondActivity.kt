@@ -51,6 +51,7 @@ class SecondActivity : AppCompatActivity() {
         Timber.d("lifecycle Test >>> SubActivity onDestroy")
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         val intent = Intent()
         intent.putExtra("testKey", "안녕하세요")
@@ -58,6 +59,7 @@ class SecondActivity : AppCompatActivity() {
         finish()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Timber.d(">>> SecondActivity requestCode : $requestCode resultCode : $resultCode")

@@ -61,11 +61,10 @@ dependencies {
     /**
      * Stetho
      */
-    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho:1.6.0'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 
-
-
+    implementation 'androidx.window:window:1.0.0'
     implementation 'androidx.webkit:webkit:1.4.0'
 
     /**

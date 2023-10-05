@@ -79,6 +79,7 @@ class StartActivityTestFragment : Fragment() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Timber.d(">>> StartActivityTestFragment requestCode : $requestCode resultCode : $resultCode")

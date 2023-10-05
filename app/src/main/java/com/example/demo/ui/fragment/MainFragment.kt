@@ -89,5 +89,8 @@ class MainFragment : Fragment() {
                     ViewPager2TestActivity::class.java
                 ).apply { flags = Intent.FLAG_ACTIVITY_SINGLE_TOP })
         }
+        binding.btnFolderbleCheck.setOnClickListener{
+            findNavController().navigate(R.id.action_MainFragment_to_FolderbleCheckTestFragment)
+        }
     }
 }

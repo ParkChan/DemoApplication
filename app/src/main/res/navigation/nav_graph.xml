@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_MainFragment_to_RecyclerLeftHoldScrollTestFragment"
             app:destination="@id/RecyclerLeftHoldScrollTestFragment" />
+        <action
+            android:id="@+id/action_MainFragment_to_FolderbleCheckTestFragment"
+            app:destination="@id/FolderbleCheckTestFragment" />
     </fragment>
 
     <fragment
@@ -58,6 +61,9 @@
         android:name="com.example.demo.ui.fragment.RecyclerLeftHoldScrollTestFragment"
         tools:layout="@layout/fragment_recycler_left_hold_scroll" />
 
-
+    <fragment
+        android:id="@+id/FolderbleCheckTestFragment"
+        android:name="com.example.demo.ui.fragment.FolderbleCheckTestFragment"
+        tools:layout="@layout/fragment_folderble_test" />
 
 </navigation>
