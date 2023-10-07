@@ -48,7 +48,6 @@ class FolderbleCheckTestFragment : Fragment() {
                                 // Use newLayoutInfo to update the layout.
                                 val result = extractTypeAndState(newLayoutInfo.displayFeatures.toString())
                                 Snackbar.make(binding.root, "폴더블 디바이스 입니다. $result", Snackbar.LENGTH_SHORT).show()
-                                extractTypeAndState(newLayoutInfo.displayFeatures.toString())
                             } else {
                                 Snackbar.make(binding.root, "폴더블이 아닙니다.", Snackbar.LENGTH_SHORT).show()
                             }
