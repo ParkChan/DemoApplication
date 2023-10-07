@@ -60,7 +60,6 @@ class FolderbleCheckTestFragment : Fragment() {
 
     companion object {
         fun extractTypeAndState(str: String): Pair<String, String> {
-            Timber.d("CHAN >>> $str")
             // 정규식을 이용하여 type 과 state 값을 찾는다
             val regex = Regex("type=(\\w+), state=(\\w+)")
             val matchResult = regex.find(str)
