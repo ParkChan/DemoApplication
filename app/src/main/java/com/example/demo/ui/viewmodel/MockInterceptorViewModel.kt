@@ -23,6 +23,7 @@ class MockInterceptorViewModel @Inject constructor(
         runCatching {
             val result = bookmarkUseCase.invoke()
             Timber.d("CHAN >>> 성공 $result")
+            _bookmarkList.value = result.getOrNull()
         }.onFailure {
             Timber.d("CHAN >>> 실패 ${it.message}")
         }

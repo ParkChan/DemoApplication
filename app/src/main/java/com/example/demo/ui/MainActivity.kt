@@ -16,7 +16,6 @@ import java.net.URI
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel by viewModels<MockInterceptorViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +23,6 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         setContentView(binding.root)
 
-        viewModel.bookmarkList.observe(this){
-
-        }
-        viewModel.fetchBookmarkList()
         Timber.d("lifecycle Test >>> MainActivity onCreate")
     }
 

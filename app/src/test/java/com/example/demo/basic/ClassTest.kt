@@ -39,4 +39,8 @@ class Sample {
     }
 
     private val b = println("property #2")
+
+    companion object{
+        val test = println("companion object")
+    }
 }
