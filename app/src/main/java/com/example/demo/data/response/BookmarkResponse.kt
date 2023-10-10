@@ -1,6 +1,6 @@
 package com.example.demo.data.response
 
-import com.example.demo.domain.entity.response.BookmarkEntity
+import com.example.demo.domain.entity.response.BookmarkDto
 import com.google.gson.annotations.SerializedName
 
 data class BookmarkResponse(
@@ -17,8 +17,8 @@ data class BookmarkItem(
     val title: String = "",
     @SerializedName("price")
     val price: String = ""
-) : MapToDomain<BookmarkEntity> {
-    override fun mapToDomain(): BookmarkEntity {
-        return BookmarkEntity(seq, thumbnail, title, price)
+) : MapToDomain<BookmarkDto> {
+    override fun mapToDomain(): BookmarkDto {
+        return BookmarkDto(seq, thumbnail, title, price)
     }
 }

@@ -1,4 +1,4 @@
-package com.example.demo.domain.repository
+package com.example.demo.domain.repository.sample
 
 import com.example.demo.data.CountRepository
 import kotlinx.coroutines.delay

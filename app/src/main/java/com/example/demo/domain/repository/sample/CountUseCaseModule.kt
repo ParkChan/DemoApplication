@@ -1,4 +1,4 @@
-package com.example.demo.domain.repository
+package com.example.demo.domain.repository.sample
 
 import dagger.Binds
 import dagger.Module
