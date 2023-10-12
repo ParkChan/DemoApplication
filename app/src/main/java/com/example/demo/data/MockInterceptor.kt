@@ -32,23 +32,16 @@ class MockInterceptor @Inject constructor(): Interceptor {
         /**
          * asset의 파일을 읽어온다.
          */
-        private fun readAssetFile(context: Context, uri: URI): String {
+        fun readAssetFile(context: Context, uri: URI): String {
             val responseStringBuilder = StringBuilder()
-            context.assets.open(uri.path.removePrefix("/")).use { inputStream ->
-                BufferedReader(InputStreamReader(inputStream)).use { reader ->
-                    while (true) {
-                        val line = reader.readLine()
-                        line?.let {
-                            responseStringBuilder.append(it).append("\n")
-                        } ?: break
-                    }
-                }
+            context.assets.open(uri.path.removePrefix("/")).bufferedReader().use {
+                responseStringBuilder.append(it.readText())
             }
             return responseStringBuilder.toString()
         }
         private fun mockResponse(chain: Interceptor.Chain, response:String) = Response.Builder()
             .code(200)
-            .message(response)
+            .message("success")
             .request(chain.request())
             .protocol(Protocol.HTTP_1_0)
             .body(
