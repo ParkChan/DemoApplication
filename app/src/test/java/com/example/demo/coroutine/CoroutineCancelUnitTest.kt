@@ -120,4 +120,22 @@ class CoroutineCancelUnitTest {
         println("($scopeName) Hi I'm exception")
         throw IllegalStateException("Not supported yet")
     }
+
+    @Test
+    fun `코루틴은 한 번 취소되면 재사용할 수 없습니다 | 취소된 작업을 재사용하려면 새로운 Job 객체를 만들고 다시 시작해야 합니다`() = runBlocking {
+        val job = launch {
+            repeat(5){
+                println("Hello $it")
+                delay(1_000L)
+            }
+        }
+        delay(3_000L)
+        job.cancel()
+        println("Done")
+
+        val newJob = GlobalScope.launch {
+            println("New job started")
+            // 새로운 작업 내용
+        }
+    }
 }
