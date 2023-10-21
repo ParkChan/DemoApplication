@@ -128,10 +128,17 @@ class CoroutineCancelUnitTest {
                 println("Hello $it")
                 delay(1_000L)
             }
+
         }
         delay(3_000L)
         job.cancel()
+
+        // job이 완료될 때까지 대기
+        job.join()
+
         println("Done")
+
+        println("job 의 상태체크 ${job.isCancelled} ${job.isCompleted}")
 
         val newJob = GlobalScope.launch {
             println("New job started")
