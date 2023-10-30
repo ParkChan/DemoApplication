@@ -32,7 +32,6 @@ class AsSequenceUnitTest {
         }.map {
             println("mapping to the length of $it")
             "${it.length}"
-        }
-            .toList()
+        }.toList()
     }
 }
