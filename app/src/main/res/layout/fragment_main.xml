@@ -113,7 +113,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_rect"
-                android:text="폴더블 폰인지 확인 테스트 "
+                android:text="폴더블 폰인지 확인 테스트"
+                android:textAllCaps="false"
+                android:textColor="@color/test_text_color" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_notification_settings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="알림 설정 이동하기"
                 android:textAllCaps="false"
                 android:textColor="@color/test_text_color" />
 

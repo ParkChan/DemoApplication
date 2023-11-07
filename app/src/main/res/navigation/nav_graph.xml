@@ -30,6 +30,11 @@
         <action
             android:id="@+id/action_MainFragment_to_FolderbleCheckTestFragment"
             app:destination="@id/FolderbleCheckTestFragment" />
+        <action
+            android:id="@+id/action_MainFragment_to_NotificationSettingsFragment"
+            app:destination="@id/NotificationSettingsFragment" />
+
+
     </fragment>
 
     <fragment
@@ -65,5 +70,10 @@
         android:id="@+id/FolderbleCheckTestFragment"
         android:name="com.example.demo.ui.fragment.FolderbleCheckTestFragment"
         tools:layout="@layout/fragment_folderble_test" />
+
+    <fragment
+        android:id="@+id/NotificationSettingsFragment"
+        android:name="com.example.demo.ui.fragment.NotificationSettingsFragment"
+        tools:layout="@layout/fragment_notification_settings" />
 
 </navigation>

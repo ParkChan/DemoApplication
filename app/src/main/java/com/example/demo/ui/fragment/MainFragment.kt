@@ -93,5 +93,8 @@ class MainFragment : Fragment() {
         binding.btnFolderbleCheck.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_FolderbleCheckTestFragment)
         }
+        binding.btnNotificationSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_MainFragment_to_NotificationSettingsFragment)
+        }
     }
 }
