@@ -126,6 +126,15 @@
                 android:textAllCaps="false"
                 android:textColor="@color/test_text_color" />
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_scroll_item_position"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_rect"
+                android:text="스크롤뷰 안에 있는 뷰의 y포지션 체크"
+                android:textAllCaps="false"
+                android:textColor="@color/test_text_color" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

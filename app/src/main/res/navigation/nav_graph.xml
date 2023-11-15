@@ -33,6 +33,10 @@
         <action
             android:id="@+id/action_MainFragment_to_NotificationSettingsFragment"
             app:destination="@id/NotificationSettingsFragment" />
+        <action
+            android:id="@+id/action_MainFragment_to_ScrollviewItemPositionCheckFragment"
+            app:destination="@id/ScrollviewItemPositionCheckFragment" />
+
 
 
     </fragment>
@@ -76,4 +80,8 @@
         android:name="com.example.demo.ui.fragment.NotificationSettingsFragment"
         tools:layout="@layout/fragment_notification_settings" />
 
+    <fragment
+        android:id="@+id/ScrollviewItemPositionCheckFragment"
+        android:name="com.example.demo.ui.fragment.ScrollviewItemPositionCheckFragment"
+        tools:layout="@layout/fragment_scrollview_item_position_check" />
 </navigation>

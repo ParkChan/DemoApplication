@@ -96,5 +96,8 @@ class MainFragment : Fragment() {
         binding.btnNotificationSettings.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_NotificationSettingsFragment)
         }
+        binding.btnScrollItemPosition.setOnClickListener {
+            findNavController().navigate(R.id.action_MainFragment_to_ScrollviewItemPositionCheckFragment)
+        }
     }
 }
