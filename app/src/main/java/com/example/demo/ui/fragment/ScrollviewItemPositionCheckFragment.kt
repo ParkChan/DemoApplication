@@ -51,26 +51,30 @@ class ScrollviewItemPositionCheckFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.svRoot.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-//            Timber.d(
-//                "CHAN >>> scrollY is ${
-//                    scrollY + binding.svRoot.height - getNavigationBarHeight(requireContext())
-//                } binding.tvResult.y is ${binding.tvResult.y}"
-//            )
 
             val button = binding.tvResult
             val location = IntArray(2)
             button.getLocationOnScreen(location)
             val y = location[1]
 
-            Timber.d("CHAN >>> $y  ${binding.tvResult.y}")
+            val visibleTopY = y - binding.svRoot.height - getStatusBarHeight(requireContext())
 
-//            if (scrollY + binding.svRoot.height - getNavigationBarHeight(requireContext()) > binding.tvResult.y) {
-//                binding.tvMessage.visibility = View.VISIBLE
-//                Timber.d("CHAN >>> 하단까지 모두 노출됨")
-//            }
+            Timber.d("CHAN >>> $visibleTopY")
+
+            if (visibleTopY > 0) {
+                Timber.d("CHAN >>> 하단에 텍스트 문구가 곧 보임")
+            }
         }
     }
-
+    private fun getStatusBarHeight(context: Context): Int {
+        val resources = context.resources
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        return if (resourceId > 0) {
+            resources.getDimensionPixelSize(resourceId)
+        } else {
+            0
+        }
+    }
     private fun getNavigationBarHeight(context: Context): Int {
         val resources = context.resources
         val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
