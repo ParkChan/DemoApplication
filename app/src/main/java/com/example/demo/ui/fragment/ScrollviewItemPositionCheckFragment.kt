@@ -1,6 +1,7 @@
 package com.example.demo.ui.fragment
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +9,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ScrollView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.window.layout.WindowInfoTracker
+import com.example.demo.R
 import com.example.demo.databinding.FragmentFolderbleTestBinding
 import com.example.demo.databinding.FragmentScrollviewItemPositionCheckBinding
 import com.google.android.material.snackbar.Snackbar
@@ -36,6 +40,10 @@ class ScrollviewItemPositionCheckFragment : Fragment() {
         binding = FragmentScrollviewItemPositionCheckBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            activity?.window?.navigationBarColor = ContextCompat.getColor(requireContext(), R.color.test_bg)
+        }
+
         return binding.root
     }
 
@@ -43,17 +51,23 @@ class ScrollviewItemPositionCheckFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.svRoot.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            Timber.d(
-                "CHAN >>> scrollY is ${
-                    binding.svRoot.height + scrollY + getNavigationBarHeight(
-                        requireContext()
-                    )
-                } binding.tvResult.y is ${binding.tvResult.y}"
-            )
+//            Timber.d(
+//                "CHAN >>> scrollY is ${
+//                    scrollY + binding.svRoot.height - getNavigationBarHeight(requireContext())
+//                } binding.tvResult.y is ${binding.tvResult.y}"
+//            )
 
-            if (binding.svRoot.height + scrollY + getNavigationBarHeight(requireContext()) > binding.tvResult.y) {
-                binding.tvMessage.visibility = View.VISIBLE
-            }
+            val button = binding.tvResult
+            val location = IntArray(2)
+            button.getLocationOnScreen(location)
+            val y = location[1]
+
+            Timber.d("CHAN >>> $y  ${binding.tvResult.y}")
+
+//            if (scrollY + binding.svRoot.height - getNavigationBarHeight(requireContext()) > binding.tvResult.y) {
+//                binding.tvMessage.visibility = View.VISIBLE
+//                Timber.d("CHAN >>> 하단까지 모두 노출됨")
+//            }
         }
     }
 
