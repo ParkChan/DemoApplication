@@ -1,5 +1,6 @@
 package com.example.demo
 
+import com.example.demo.ui.util.isEquals
 import com.example.demo.ui.util.toBigDecimalV1
 import org.junit.Test
 import java.math.BigDecimal
@@ -171,6 +172,13 @@ class BigDecimalUnitTest {
         println("FLOOR " + BigDecimal("12.37").setScale(1, RoundingMode.FLOOR))
     }
 
+    @Test
+    fun `BigDecimal 크기 비교시 주의점`() {
+        val data1 = 0.toBigDecimal()
+        val data2 = 0.0.toBigDecimal()
+        println("두값이 같은지 operator로 비교시 문제점 ${data1 == data2}")
+        println("두값이 같은지 compareTo를 사용하여 비교 ${data1.isEquals(data2)}")
+    }
     @Test
     fun `isFinite 를 사용하면 Infinity 와 NaN 을 모두 체크`() {
 
