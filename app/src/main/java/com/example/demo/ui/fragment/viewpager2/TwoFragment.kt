@@ -1,16 +1,26 @@
 package com.example.demo.ui.fragment.viewpager2
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.TextUtils
+import android.text.style.ImageSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.view.doOnLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
+import com.example.demo.R
 import com.example.demo.databinding.FragmentTwoBinding
 import com.example.demo.databinding.ItemCarLeftBinding
 import com.example.demo.ui.fragment.RecyclerLeftHoldScrollTestFragment
@@ -65,7 +75,7 @@ class TwoFragment : Fragment() {
 
     }
 
-    internal class RecyclerAdapter :
+    class RecyclerAdapter :
         RecyclerView.Adapter<RecyclerAdapter.SampleViewHolder>() {
 
         private val itemList = mutableListOf<RecyclerLeftHoldScrollTestFragment.Car>()
@@ -93,19 +103,41 @@ class TwoFragment : Fragment() {
             }
         }
 
-        internal class SampleViewHolder(
+        class SampleViewHolder(
             private val binding: ItemCarLeftBinding
         ) : RecyclerView.ViewHolder(binding.root) {
             fun bind(position: Int, car: RecyclerLeftHoldScrollTestFragment.Car) {
-                binding.car = car
-                binding.tvTest.textSize = position.toFloat()
-                binding.tvTest.tag?.let {
-                    Timber.d("CHAN >>> getTag $it")
-                } ?: run {
-                    Timber.d("CHAN >>> getTag is NULL")
-                }
-                binding.tvTest.tag = position
 
+                binding.car = car
+                binding.tvTest.maxLines = 2
+
+                val carName = car.name + "테스트 입니다  "
+
+                val spannableString = SpannableString("$carName  ")
+
+                val context = binding.tvTest.context
+
+                ContextCompat.getDrawable(context, R.drawable.ic_text_1)?.run {
+                    setBounds(0, 0, 50, 50)
+                    spannableString.setSpan(
+                        ImageSpan(this, ImageSpan.ALIGN_BASELINE),
+                        carName.length,
+                        carName.length + 1,
+                        Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                    )
+                }
+
+                ContextCompat.getDrawable(context, R.drawable.ic_text_2)?.run {
+                    setBounds(0, 0, 50, 50)
+                    spannableString.setSpan(
+                        ImageSpan(this, ImageSpan.ALIGN_BASELINE),
+                        carName.length + 1,
+                        carName.length + 2,
+                        Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                    )
+                }
+
+                binding.tvTest.text = spannableString
                 binding.executePendingBindings()
             }
         }
