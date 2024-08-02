@@ -77,7 +77,6 @@ dependencies {
      * Hilt
      */
     implementation "com.google.dagger:hilt-android:2.40.5"
-    implementation 'androidx.test.ext:junit-ktx:1.1.5'
     kapt "com.google.dagger:hilt-compiler:2.40.5"
 
     /**
@@ -96,5 +95,11 @@ dependencies {
     androidTestImplementation "org.assertj:assertj-core:3.21.0"
 
     testImplementation "org.robolectric:robolectric:4.9.2"
+
+    /** Kaspresso */
+    androidTestImplementation 'com.kaspersky.android-components:kaspresso:1.5.3'
+    androidTestUtil("androidx.test:orchestrator:1.5.0")
+    implementation 'androidx.test.ext:junit-ktx:1.2.1'
+    androidTestImplementation("androidx.test.ext:junit-ktx:1.2.1")  // activityScenarioRule
 
 }
