@@ -2,14 +2,10 @@ package com.example.demo.ui
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.demo.databinding.ActivityMainBinding
-import com.example.demo.ui.viewmodel.LogEventViewModel
-import com.example.demo.ui.viewmodel.MockInterceptorViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import java.net.URI
 
 
 @AndroidEntryPoint
