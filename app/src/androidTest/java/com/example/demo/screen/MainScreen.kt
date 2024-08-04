@@ -8,8 +8,8 @@ import com.example.demo.R
 
 object MainScreen : KScreen<MainScreen>() {
 
-    override val layoutId: Int = R.layout.activity_main
-    override val viewClass: Class<*> = MainActivity::class.java
+    override val layoutId: Int? = null
+    override val viewClass: Class<*>? = null
 
     val viewpagerButton = KButton { withId(R.id.btn_nav) }
 
