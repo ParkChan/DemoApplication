@@ -1,14 +1,14 @@
 package com.example.demo
 
-import android.widget.Toast
 import androidx.test.ext.junit.rules.activityScenarioRule
 import com.example.demo.screen.MainScreen
 import com.example.demo.ui.MainActivity
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
-import io.github.kakaocup.kakao.pager2.KViewPager2
 import io.github.kakaocup.kakao.screen.Screen
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.Suite
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -43,5 +43,28 @@ class ExampleInstrumentedTest : TestCase() {
                 }
             }
         }
+    }
+}
+
+// ./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.demo.TestSuite
+// ./gradlew connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.demo.TestSuite
+@RunWith(Suite::class)
+@Suite.SuiteClasses(
+    FirstTestClass::class,  // 먼저 실행
+    SecondTestClass::class // 나중에 실행
+)
+class TestSuite
+
+class FirstTestClass : TestCase() {
+    @Test
+    fun test(){
+        println("Hello 1")
+    }
+
+}
+class SecondTestClass : TestCase() {
+    @Test
+    fun test(){
+        println("Hello 2")
     }
 }
