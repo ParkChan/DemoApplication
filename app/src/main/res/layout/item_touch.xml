@@ -5,10 +5,6 @@
 
     <data>
 
-        <variable
-            name="sampleText"
-            type="String" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,15 +13,18 @@
         android:layout_height="80dp"
         android:background="@color/white">
 
-        <TextView
+        <com.example.demo.ui.customview.CustomTextView
             android:id="@+id/tv_number"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/test_bg"
-            android:gravity="center"
-            android:text="@{sampleText}"
+            android:gravity="start"
             android:textColor="@color/test_text_color"
-            android:textSize="20sp"
+            android:maxLines="2"
+            android:textSize="20dp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeMaxTextSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_drag"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +33,7 @@
 
         <TextView
             android:id="@+id/tv_drag"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="0dp"
             android:gravity="center"
             android:paddingHorizontal="10dp"

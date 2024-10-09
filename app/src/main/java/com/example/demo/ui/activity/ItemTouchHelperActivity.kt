@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.databinding.ActivityItemTouchHelperBinding
 import com.example.demo.databinding.ItemTouchBinding
+import timber.log.Timber
 
 /**
  * 리스트 아이템을 터치하여 정렬하는 예제
@@ -76,7 +77,7 @@ class ItemTouchHelperActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: SampleViewHolder, position: Int) {
-            holder.bind(itemList[position])
+            holder.bind(itemList[position], position)
         }
 
         override fun getItemCount(): Int {
@@ -119,10 +120,31 @@ class ItemTouchHelperActivity : AppCompatActivity() {
             private val binding: ItemTouchBinding
         ) : RecyclerView.ViewHolder(binding.root) {
 
-            fun bind(text: String) {
-                binding.sampleText = text
+            fun bind(message: String, position: Int) {
+                //binding.sampleText = text
+                binding.tvNumber.run {
+                    suffix = "suffix"
+                    text = sampleText[(0..1).random()]
+                }
+                binding.tvNumber.post {
+                    Timber.d("CHAN >>> position $position suffix 는 다음줄로 출력 되는가? ${binding.tvNumber.isSuffixNextLine}")
+                }
                 binding.executePendingBindings()
             }
+        }
+        companion object {
+            private val sampleText = arrayOf(
+                "1.문자열이긴경우를 테스트 합니다." +
+                        "문자열이긴경우를 테스트 합니다." +
+                        "문자열이긴경우를 테스트 합니다." +
+                        "문자열이긴경우를 테스트 합니다.",
+                "2.문자열이긴경우를 테스트 합니다." +
+                        "문자열이긴경우를 테스트 합니다." +
+                        "문자열이긴경우를 테스트 합니다." +
+                        "문자열이긴경우를 테스트 합니다." +
+                        "문자열이긴경우를 테스트 합니다." +
+                        "문자열이긴경우를 테스트 합니다. 문자열이긴경우"
+            )
         }
     }
 
