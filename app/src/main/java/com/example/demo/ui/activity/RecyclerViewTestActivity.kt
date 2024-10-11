@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demo.databinding.ActivityRecyclerviewTestBinding
 import com.example.demo.databinding.ListItemBinding
+import com.example.demo.ui.customview.CustomTextView
+import timber.log.Timber
 
 /**
  * RecyclerView 테스트 화면
@@ -35,11 +37,21 @@ class RecyclerViewTestActivity : AppCompatActivity() {
         binding.rvList.layoutManager = LinearLayoutManager(this)
 
         for (i in 1..30) {
-            itemList.add("This is item number $i")
+            if (i % 3 == 0) {
+                itemList.add(
+                    "This is item number " +
+                            "TestTestTestTestTestTestTestTestTestTestTest" +
+                            "TestTestTestTestTestTestTestTestTestTestTest $i"
+                )
+            } else {
+                itemList.add("This is item number $i")
+            }
+
         }
 
         adapter = MyAdapter(itemList)
         binding.rvList.adapter = adapter
+        binding.rvList.itemAnimator = null
 
         startRefreshingList()
     }
@@ -51,9 +63,9 @@ class RecyclerViewTestActivity : AppCompatActivity() {
         val updateTask = object : Runnable {
             override fun run() {
                 if (currentIndex < itemList.size) {
-                    adapter.notifyItemChanged(currentIndex)
+                    adapter.notifyItemChanged(currentIndex, currentIndex)
                     currentIndex++
-                    handler.postDelayed(this, 200) // 0.2초 지연
+                    handler.postDelayed(this, 100) // 0.2초 지연
                 }
             }
         }
@@ -76,25 +88,37 @@ class RecyclerViewTestActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
             val itemText = items[position]
-            holder.textView.text = itemText
+            holder.textView.tempText = itemText
+            holder.textView.suffix = "suffix"
 
             // TextView의 라인 수에 따라 버튼을 보이거나 숨김 처리
             holder.textView.post {
-                val layout: Layout? = holder.textView.layout
-                if (layout != null && layout.lineCount > 2) {
-                    holder.button.visibility = View.GONE // 2줄 이상일 경우 버튼 숨김
+                if (holder.textView.isSuffixNextLine) {
+                    holder.button.visibility = View.GONE
+                    holder.textView.text = itemText.plus("\n suffix")
                 } else {
-                    holder.button.visibility = View.VISIBLE // 2줄 이하일 경우 버튼 표시
+                    holder.button.visibility = View.VISIBLE
+                    holder.textView.text = itemText.plus(" suffix")
                 }
+//                val layout: Layout? = holder.textView.layout
+//                if (layout != null && layout.lineCount > 2) {
+//                    Timber.d("CHAN >>> ${layout.lineCount} 라인")
+//                    holder.button.visibility = View.GONE // 2줄 이상일 경우 버튼 숨김
+//                } else {
+//                    Timber.d("CHAN >>> 1 라인")
+//                    holder.button.visibility = View.VISIBLE // 2줄 이하일 경우 버튼 표시
+//                }
+            }
+            holder.button.setOnClickListener {
+                startRefreshingList()
             }
         }
 
         override fun getItemCount(): Int = items.size
 
         inner class MyViewHolder(binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-            val textView: TextView = binding.textView
+            val textView: CustomTextView = binding.textview
             val button: Button = binding.button
-
         }
     }
 }

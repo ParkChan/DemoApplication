@@ -7,6 +7,7 @@ import android.text.StaticLayout
 import android.text.TextPaint
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import timber.log.Timber
 
 class CustomTextView @JvmOverloads constructor(
     context: Context,
@@ -14,13 +15,14 @@ class CustomTextView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
 
+    var tempText: String = ""
     var suffix: String = ""
     var isSuffixNextLine = false
         private set
 
     override fun onDraw(canvas: Canvas) {
         val textPaint: TextPaint = paint
-        val text = text.toString()
+        val text = tempText
         val availableWidth = width - paddingLeft - paddingRight
 
         val layout = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
