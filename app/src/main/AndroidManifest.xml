@@ -40,6 +40,7 @@
         <activity android:name="com.example.demo.ui.activity.PopupwindowActivity" />
         <activity android:name="com.example.demo.ui.activity.ViewPager2TestActivity" />
         <activity android:name="com.example.demo.ui.activity.ViewMockHttpTestActivity" />
+        <activity android:name="com.example.demo.ui.activity.RecyclerViewTestActivity" />
 
     </application>
 

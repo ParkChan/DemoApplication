@@ -12,6 +12,7 @@ import com.example.demo.ui.activity.ItemTouchHelperActivity
 import com.example.demo.ui.activity.PopupwindowActivity
 import com.example.demo.ui.activity.WebViewActivity
 import com.example.demo.databinding.FragmentMainBinding
+import com.example.demo.ui.activity.RecyclerViewTestActivity
 import com.example.demo.ui.activity.ViewMockHttpTestActivity
 import com.example.demo.ui.activity.ViewPager2TestActivity
 
@@ -90,6 +91,15 @@ class MainFragment : Fragment() {
                     ViewMockHttpTestActivity::class.java
                 ).apply { flags = Intent.FLAG_ACTIVITY_SINGLE_TOP })
         }
+
+        binding.btnCommonRecyclerview.setOnClickListener {
+            startActivity(
+                Intent(
+                    context,
+                    RecyclerViewTestActivity::class.java
+                ).apply { flags = Intent.FLAG_ACTIVITY_SINGLE_TOP })
+        }
+
         binding.btnFolderbleCheck.setOnClickListener {
             findNavController().navigate(R.id.action_MainFragment_to_FolderbleCheckTestFragment)
         }
